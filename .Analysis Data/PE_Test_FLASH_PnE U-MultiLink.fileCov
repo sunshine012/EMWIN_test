@@ -1,0 +1,23 @@
+**1
+E:/Workspace/MK70_Try/PE_Test/.Analysis Data/PE_Test_FLASH_PnE U-MultiLink_0.elf
+
+**Lines
+
+"File": "Name"(width 200, sort string); "Number of Lines"(width 80, sort int); "Lines Executed"(width 60, sort int); "Coverage %"(width 70, sort float)
+**Data
+
+*0
+"File": "AS1.c"; "562"; "8"; "1.42"
+"File": "ASerialLdd1.c"; "695"; "87"; "12.52"
+"File": "Bit1.c"; "302"; "22"; "7.28"
+"File": "Bit2.c"; "302"; "22"; "7.28"
+"File": "Cpu.c"; "1534"; "118"; "7.69"
+"File": "GPIO1.c"; "763"; "25"; "3.28"
+"File": "GPIO2.c"; "656"; "65"; "9.91"
+"File": "SM1.c"; "534"; "77"; "14.42"
+"File": "AppTask.c"; "200"; "20"; "10.00"
+"File": "main.c"; "187"; "24"; "12.83"
+"File": "GUIConf.c"; "149"; "15"; "10.07"
+"File": "GUI_X.c"; "245"; "3"; "1.22"
+"File": "LCDConf.c"; "355"; "30"; "8.45"
+

@@ -1,0 +1,88 @@
+
+/**
+ * @file   SysFont.h
+ * @author Rick Johnson
+ * @date   06/16/2014
+ * @brief  System fonts
+ *
+ * Contains the system font definitions
+ */
+
+
+#ifndef _SYS_FONT_H_
+#define _SYS_FONT_H_
+
+////////////////////////////////////////////////////////////////////////////////
+//
+// Required include files.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+#include "DrvTypeDefs.h"
+
+
+//#include "DatFontHeaders.h"
+
+////////////////////////////////////////////////////////////////////////////////
+//
+// Type definitions.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+typedef struct
+{
+   UINT8          Width;               //!< character width in pixels
+   UINT8          Height;              //!< character height in pixels
+   UINT8          BytesPerChar;        //!< character storage bytes
+   UINT8          CharOffset;          //!< character offset
+   UINT8          CharCount;           //!< number of characters in font
+   UINT8          Underline;           //!< underline indicator
+   UINT8		  InvertChar;          //!< invert character value
+   DATA_PTR 	  Address;             //!< pointer to font table
+}_FontHeader;
+
+////////////////////////////////////////////////////////////////////////////////
+//
+// Definitions.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+// General font properties
+#define FONT_MIN_CHAR_WIDTH        6   //!< minimum font width in pixels
+#define FONT_MAX_CHAR_WIDTH       40   //!< maximum font width in pixels
+#define FONT_MAX_CHAR_HEIGHT      16   //!< maximum font height in pixels
+#define FONT_MAX_BYTES_PER_CHAR  200   //!< maximum storage bytes per character
+#define FOMT_MAX_CHAR_COUNT      255   //!< maximum character count per font
+
+////////////////////////////////////////////////////////////////////////////////
+//
+// Macro's
+//
+////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
+//
+// External declarations
+//
+////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
+//
+// Function prototypes.
+//
+////////////////////////////////////////////////////////////////////////////////
+void SysFontHeaderInit(DATA_PTR address, UINT8 bytesPerChar, UINT8 charcount, UINT8 charoffset, UINT8 Height, UINT8 invertchar, UINT8 underline, UINT8 width);
+UINT8 SysFontGetCharData( CHAR Char, void *Buffer, UINT8 *Height );
+void SysFontGetCharLineData( CHAR NChar, UINT16 Line, void *Buffer );
+UINT8 SysFontGetStringWidth( const CHAR *String );
+UINT8 SysGetFontWidth( void );
+UINT8 SysGetFontHeight( void );
+
+////////////////////////////////////////////////////////////////////////////////
+//
+// End of include file.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+#endif
+
