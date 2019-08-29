@@ -8,9 +8,10 @@
 
 
 /***** Definitions *****/
+#define SCREEN_XSIZE		320
+#define SCREEN_YSIZE		240
 
-
-
+#define USER_MESSAGE_1  (WM_USER + 1)
 /***** Macro's *****/
 
 /***** Global variables *****/

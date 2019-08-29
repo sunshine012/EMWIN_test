@@ -2,7 +2,8 @@ Sources/AppDisplay.o: ../Sources/AppDisplay.c \
  C:/Freescale/CW\ MCU\ v10.7/MCU/ARM_GCC_Support/ewl/EWL_C/include/lib_c99.prefix \
  C:/Freescale/CW\ MCU\ v10.7/MCU/ARM_GCC_Support/ewl/EWL_C/include/common.prefix \
  C:/Freescale/CW\ MCU\ v10.7/MCU/ARM_GCC_Support/ewl/EWL_C/include/ewl_c_version.h \
- E:/Workspace/MK70_Try/PE_Test/emwin_548/emwin_header/DIALOG.h \
+ ../Sources/AppDisplay.h \
+ E:/Workspace/MK70_Try/PE_Test/emwin_548/emwin_header/Dialog.h \
  E:/Workspace/MK70_Try/PE_Test/emwin_548/emwin_header/WM.h \
  E:/Workspace/MK70_Try/PE_Test/emwin_548/emwin_header/GUI_ConfDefaults.h \
  E:/Workspace/MK70_Try/PE_Test/emwin_548/emwin_config/GUIConf.h \
@@ -56,7 +57,8 @@ Sources/AppDisplay.o: ../Sources/AppDisplay.c \
  E:/Workspace/MK70_Try/PE_Test/emwin_548/emwin_header/SPINBOX.h \
  E:/Workspace/MK70_Try/PE_Test/emwin_548/emwin_header/SWIPELIST.h \
  E:/Workspace/MK70_Try/PE_Test/emwin_548/emwin_header/TEXT.h \
- E:/Workspace/MK70_Try/PE_Test/emwin_548/emwin_header/TREEVIEW.h
+ E:/Workspace/MK70_Try/PE_Test/emwin_548/emwin_header/TREEVIEW.h \
+ E:/Workspace/MK70_Try/PE_Test/emwin_548/emwin_header/DIALOG.h
 
 C:/Freescale/CW\ MCU\ v10.7/MCU/ARM_GCC_Support/ewl/EWL_C/include/lib_c99.prefix:
 
@@ -64,7 +66,9 @@ C:/Freescale/CW\ MCU\ v10.7/MCU/ARM_GCC_Support/ewl/EWL_C/include/common.prefix:
 
 C:/Freescale/CW\ MCU\ v10.7/MCU/ARM_GCC_Support/ewl/EWL_C/include/ewl_c_version.h:
 
-E:/Workspace/MK70_Try/PE_Test/emwin_548/emwin_header/DIALOG.h:
+../Sources/AppDisplay.h:
+
+E:/Workspace/MK70_Try/PE_Test/emwin_548/emwin_header/Dialog.h:
 
 E:/Workspace/MK70_Try/PE_Test/emwin_548/emwin_header/WM.h:
 
@@ -173,3 +177,5 @@ E:/Workspace/MK70_Try/PE_Test/emwin_548/emwin_header/SWIPELIST.h:
 E:/Workspace/MK70_Try/PE_Test/emwin_548/emwin_header/TEXT.h:
 
 E:/Workspace/MK70_Try/PE_Test/emwin_548/emwin_header/TREEVIEW.h:
+
+E:/Workspace/MK70_Try/PE_Test/emwin_548/emwin_header/DIALOG.h:

@@ -20,10 +20,6 @@
 #include "pictures.h"
 #include "AppDisplay.h"
 
-#define SCREEN_XSIZE		320
-#define SCREEN_YSIZE		240
-
-
 #ifdef	USE_FREERTOS
 	EventGroupHandle_t xKeyEventGroup;
 	TaskHandle_t	StartTask_Handle;
@@ -204,13 +200,19 @@ void LCDTask( void *pvParameters )
 	float SinTable[60];
 	uint8 clock_second, clock_minute, clock_hour, pre_second, pre_minute, pre_hour, daycnt;
 	char num_display[12], num_transfer[3];
-	GUI_MEMDEV_Handle	hMem;	
+
 	r = 108;
 	//GUI_DispStringAt(pstring, (SCREEN_XSIZE - GUI_GetStringDistX(pstring))/2, SCREEN_YSIZE/2);
 
 	GUI_Init();
 
 	hDlg = CreateWindow();
+	WM_SelectWindow(hDlg);
+	WM_InvalidateWindow(hDlg);
+	WM_SendMessageNoPara(hDlg, USER_MESSAGE_1);
+	//WM_Exec();
+
+	/*GUI_SetBkColor(GUI_BLACK);
 	GUI_SetColor(GUI_WHITE);
 	GUI_DrawCircle(SCREEN_XSIZE/2, SCREEN_YSIZE/2, (SCREEN_YSIZE - 10)/2);
 	GUI_DrawCircle(SCREEN_XSIZE/2, SCREEN_YSIZE/2, (SCREEN_YSIZE - 10)/2 + 1);
@@ -249,6 +251,9 @@ void LCDTask( void *pvParameters )
 	GUI_SetPenSize(3);
 	GUI_SetColor(GUI_GREEN);
 	GUI_DrawLine(SCREEN_XSIZE/2, SCREEN_YSIZE/2, SCREEN_XSIZE/2, 40);
+	WM_Paint(hDlg);
+	WM_InvalidateWindow(hDlg);
+	WM_Exec();*/
 
 #ifndef	USE_FREERTOS
 	clockstart = 1;
@@ -257,7 +262,7 @@ void LCDTask( void *pvParameters )
 #endif
 	while(1)
 	{
-		GUI_X_Delay(1);
+		GUI_X_Delay(2);
 	}
 
 	for(;;)
@@ -351,7 +356,7 @@ void LCDTask( void *pvParameters )
 #ifdef	USE_FREERTOS
 			vTaskSuspend(NULL);
 #else
-			GUI_X_Delay(1);
+			GUI_X_Delay(5);
 #endif
 		}
 	}

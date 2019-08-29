@@ -19,6 +19,7 @@
 */
 
 // USER START (Optionally insert additional includes)
+#include "AppDisplay.h"
 // USER END
 
 #include "DIALOG.h"
@@ -75,21 +76,40 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
   // USER END
 
   switch (pMsg->MsgId) {
-  case WM_INIT_DIALOG:
-    //
-    // Initialization of 'Window'
-    //
-    hItem = pMsg->hWin;
-    WINDOW_SetBkColor(hItem, GUI_BLACK);
-    // USER START (Optionally insert additional code for further widget initialization)
+    case WM_INIT_DIALOG:
+      //
+      // Initialization of 'Window'
+      //
+      hItem = pMsg->hWin;
+      WINDOW_SetBkColor(hItem, GUI_BLACK);
+      // USER START (Optionally insert additional code for further widget initialization)
+      // USER END
+      break;
+    // USER START (Optionally insert additional message handling)
     // USER END
-    break;
-  // USER START (Optionally insert additional message handling)
-  // USER END
-  default:
-    WM_DefaultProc(pMsg);
-    break;
-  }
+    case WM_PAINT:
+        GUI_SetBkColor(GUI_BLACK);
+        /*GUI_Clear();
+        GUI_SetColor(GUI_WHITE);
+        GUI_DrawCircle(SCREEN_XSIZE/2, SCREEN_YSIZE/2, (SCREEN_YSIZE - 10)/2);
+        GUI_DrawCircle(SCREEN_XSIZE/2, SCREEN_YSIZE/2, (SCREEN_YSIZE - 10)/2 + 1);
+        GUI_DrawCircle(SCREEN_XSIZE/2, SCREEN_YSIZE/2, (SCREEN_YSIZE - 10)/2 + 2);
+        GUI_DispStringAt("Hello world", 20, 20);*/
+        break;
+    
+    case USER_MESSAGE_1:
+        GUI_SetBkColor(GUI_BLACK);
+        GUI_Clear();
+        GUI_SetColor(GUI_WHITE);
+        GUI_DrawCircle(SCREEN_XSIZE/2, SCREEN_YSIZE/2, (SCREEN_YSIZE - 10)/2);
+        GUI_DrawCircle(SCREEN_XSIZE/2, SCREEN_YSIZE/2, (SCREEN_YSIZE - 10)/2 + 1);
+        GUI_DrawCircle(SCREEN_XSIZE/2, SCREEN_YSIZE/2, (SCREEN_YSIZE - 10)/2 + 2);
+        break;
+      
+    default:
+      WM_DefaultProc(pMsg);
+      break;
+    }
 }
 
 /*********************************************************************
