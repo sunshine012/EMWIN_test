@@ -4,6 +4,7 @@
 */*.d
 /FLASH/
 /FlashBootloader/
+/Documentation/
 .settings/org.eclipse.cdt.core.prefs
 .settings/org.eclipse.cdt.ui.prefs
 /.cproject

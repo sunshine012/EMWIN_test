@@ -7,7 +7,7 @@
 **     Version     : Component 01.028, Driver 01.04, CPU db: 3.00.000
 **     Datasheet   : K70P256M150SF3RM, Rev. 2, Dec 2011
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2019-08-21, 14:27, # CodeGen: 142
+**     Date/Time   : 2019-08-30, 17:07, # CodeGen: 153
 **     Abstract    :
 **
 **     Settings    :
@@ -70,7 +70,6 @@
 #include "Bit2.h"
 #include "LCDC1.h"
 #include "SM1.h"
-#include "DMA1.h"
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
@@ -527,6 +526,36 @@ PE_ISR(Cpu_ivINT_DMA13_DMA29)
 ** ===================================================================
 */
 PE_ISR(Cpu_ivINT_DMA14_DMA30)
+{
+  /* This code can be changed using the CPU component property "Build Options / Unhandled int code" */
+  PE_DEBUGHALT();
+}
+
+/*
+** ===================================================================
+**     Method      :  Cpu_Cpu_ivINT_DMA15_DMA31 (component MK70FN1M0MJ15)
+**
+**     Description :
+**         This ISR services an unused interrupt/exception vector.
+**         This method is internal. It is used by Processor Expert only.
+** ===================================================================
+*/
+PE_ISR(Cpu_ivINT_DMA15_DMA31)
+{
+  /* This code can be changed using the CPU component property "Build Options / Unhandled int code" */
+  PE_DEBUGHALT();
+}
+
+/*
+** ===================================================================
+**     Method      :  Cpu_Cpu_ivINT_DMA_Error (component MK70FN1M0MJ15)
+**
+**     Description :
+**         This ISR services an unused interrupt/exception vector.
+**         This method is internal. It is used by Processor Expert only.
+** ===================================================================
+*/
+PE_ISR(Cpu_ivINT_DMA_Error)
 {
   /* This code can be changed using the CPU component property "Build Options / Unhandled int code" */
   PE_DEBUGHALT();
@@ -1674,21 +1703,6 @@ PE_ISR(Cpu_ivINT_USBHS)
 
 /*
 ** ===================================================================
-**     Method      :  Cpu_Cpu_ivINT_LCD (component MK70FN1M0MJ15)
-**
-**     Description :
-**         This ISR services an unused interrupt/exception vector.
-**         This method is internal. It is used by Processor Expert only.
-** ===================================================================
-*/
-PE_ISR(Cpu_ivINT_LCD)
-{
-  /* This code can be changed using the CPU component property "Build Options / Unhandled int code" */
-  PE_DEBUGHALT();
-}
-
-/*
-** ===================================================================
 **     Method      :  Cpu_Cpu_ivINT_CMP3 (component MK70FN1M0MJ15)
 **
 **     Description :
@@ -2521,8 +2535,6 @@ void PE_low_level_init(void)
   /* ### BitIO_LDD "Bit2" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
   (void)Bit2_Init(NULL);
   /* ### LCDC_LDD "LCDC1" init code ... */
-  /* ### DMA_LDD "DMA1" component auto initialization. Auto initialization feature can be disabled by component's property "Auto initialization". */
-  (void)DMA1_Init(NULL);
   /* Enable interrupts of the given priority level */
   Cpu_SetBASEPRI(0U);
 }

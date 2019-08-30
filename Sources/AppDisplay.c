@@ -66,6 +66,7 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
 *
 **********************************************************************
 */
+char *itoa_re(int num, char *str, int radix, int strlength);
 
 static void DrawCircle(void)
 {
@@ -235,7 +236,50 @@ WM_HWIN CreateWindow(void) {
 // USER START (Optionally insert additional public code)
 // USER END
 
+char *itoa_re(int num, char *str, int radix, int strlength)
+{
+    char* ptr = str;
+	char* ptemp;
+    int i;
+    int j;
+	int orilen;
+	if(num == 0)
+	{
+		for(i = 0; i < strlength; i++)
+			str[i] = '0';
+		return str;
+	}
+    while (num)
+    {
+        *ptr++  = num % radix + '0';
+        num    /= radix;
+        if (num < radix)
+        {
+            *ptr++  = num + '0';
+            *ptr    = '\0';
+            break;
+        }
+    }
+    j = ptr - str - 1;
+    for (i = 0; i < (ptr - str) / 2; i++)
+    {
+        int temp = str[i];
+        str[i]  = str[j];
+        str[j--] = temp;
+    }
 
+	orilen = strlen(str);
+	if(orilen < strlength)
+	{
+		strcpy(ptemp, str);
+		for(i = 0; i < (strlength - orilen); i++)
+			str[i] = '0';
+		strcat(str + i, ptemp);
+		str[strlength] = '\0';
+	}
+
+    return str;
+}
 
 
 /*************************** End of file ****************************/

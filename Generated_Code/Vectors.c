@@ -5,7 +5,7 @@
 **     Processor   : MK70FN1M0VMJ15
 **     Version     : Component 01.028, Driver 01.04, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2019-08-21, 14:24, # CodeGen: 141
+**     Date/Time   : 2019-08-30, 17:07, # CodeGen: 153
 **     Abstract    :
 **
 **     Settings    :
@@ -63,7 +63,6 @@
   #include "Bit2.h"
   #include "LCDC1.h"
   #include "SM1.h"
-  #include "DMA1.h"
   #include "Events.h"
 
 
@@ -114,8 +113,8 @@
     (tIsrFunc)&Cpu_ivINT_DMA12_DMA28,  /* 0x1C  0x00000070   -   ivINT_DMA12_DMA28              unused by PE */
     (tIsrFunc)&Cpu_ivINT_DMA13_DMA29,  /* 0x1D  0x00000074   -   ivINT_DMA13_DMA29              unused by PE */
     (tIsrFunc)&Cpu_ivINT_DMA14_DMA30,  /* 0x1E  0x00000078   -   ivINT_DMA14_DMA30              unused by PE */
-    (tIsrFunc)&DMA1_Channel15Interrupt, /* 0x1F  0x0000007C   8   ivINT_DMA15_DMA31              used by PE */
-    (tIsrFunc)&DMA1_ErrorInterrupt,    /* 0x20  0x00000080   8   ivINT_DMA_Error                used by PE */
+    (tIsrFunc)&Cpu_ivINT_DMA15_DMA31,  /* 0x1F  0x0000007C   -   ivINT_DMA15_DMA31              unused by PE */
+    (tIsrFunc)&Cpu_ivINT_DMA_Error,    /* 0x20  0x00000080   -   ivINT_DMA_Error                unused by PE */
     (tIsrFunc)&Cpu_ivINT_MCM,          /* 0x21  0x00000084   -   ivINT_MCM                      unused by PE */
     (tIsrFunc)&Cpu_ivINT_FTFE,         /* 0x22  0x00000088   -   ivINT_FTFE                     unused by PE */
     (tIsrFunc)&Cpu_ivINT_Read_Collision, /* 0x23  0x0000008C   -   ivINT_Read_Collision           unused by PE */
@@ -196,7 +195,7 @@
     (tIsrFunc)&Cpu_ivINT_SWI,          /* 0x6E  0x000001B8   -   ivINT_SWI                      unused by PE */
     (tIsrFunc)&Cpu_ivINT_NFC,          /* 0x6F  0x000001BC   -   ivINT_NFC                      unused by PE */
     (tIsrFunc)&Cpu_ivINT_USBHS,        /* 0x70  0x000001C0   -   ivINT_USBHS                    unused by PE */
-    (tIsrFunc)&Cpu_ivINT_LCD,          /* 0x71  0x000001C4   -   ivINT_LCD                      unused by PE */
+    (tIsrFunc)&LCDC1_Interrupt,        /* 0x71  0x000001C4   8   ivINT_LCD                      used by PE */
     (tIsrFunc)&Cpu_ivINT_CMP3,         /* 0x72  0x000001C8   -   ivINT_CMP3                     unused by PE */
     (tIsrFunc)&Cpu_ivINT_Reserved115,  /* 0x73  0x000001CC   -   ivINT_Reserved115              unused by PE */
     (tIsrFunc)&Cpu_ivINT_Reserved116,  /* 0x74  0x000001D0   -   ivINT_Reserved116              unused by PE */

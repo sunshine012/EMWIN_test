@@ -39,7 +39,6 @@
 #include "Bit2.h"
 #include "LCDC1.h"
 #include "SM1.h"
-#include "DMA1.h"
 /* Including shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"

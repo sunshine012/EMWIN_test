@@ -7,7 +7,7 @@
 **     Version     : Component 01.028, Driver 01.04, CPU db: 3.00.000
 **     Datasheet   : K70P256M150SF3RM, Rev. 2, Dec 2011
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2019-08-21, 14:24, # CodeGen: 141
+**     Date/Time   : 2019-08-30, 16:01, # CodeGen: 145
 **     Abstract    :
 **
 **     Settings    :
@@ -495,6 +495,28 @@ PE_ISR(Cpu_ivINT_DMA14_DMA30);
 /*
 ** ===================================================================
 **     Method      :  Cpu_Cpu_ivINT_DMA14_DMA30 (component MK70FN1M0MJ15)
+**
+**     Description :
+**         This ISR services an unused interrupt/exception vector.
+**         This method is internal. It is used by Processor Expert only.
+** ===================================================================
+*/
+
+PE_ISR(Cpu_ivINT_DMA15_DMA31);
+/*
+** ===================================================================
+**     Method      :  Cpu_Cpu_ivINT_DMA15_DMA31 (component MK70FN1M0MJ15)
+**
+**     Description :
+**         This ISR services an unused interrupt/exception vector.
+**         This method is internal. It is used by Processor Expert only.
+** ===================================================================
+*/
+
+PE_ISR(Cpu_ivINT_DMA_Error);
+/*
+** ===================================================================
+**     Method      :  Cpu_Cpu_ivINT_DMA_Error (component MK70FN1M0MJ15)
 **
 **     Description :
 **         This ISR services an unused interrupt/exception vector.
@@ -1331,17 +1353,6 @@ PE_ISR(Cpu_ivINT_USBHS);
 /*
 ** ===================================================================
 **     Method      :  Cpu_Cpu_ivINT_USBHS (component MK70FN1M0MJ15)
-**
-**     Description :
-**         This ISR services an unused interrupt/exception vector.
-**         This method is internal. It is used by Processor Expert only.
-** ===================================================================
-*/
-
-PE_ISR(Cpu_ivINT_LCD);
-/*
-** ===================================================================
-**     Method      :  Cpu_Cpu_ivINT_LCD (component MK70FN1M0MJ15)
 **
 **     Description :
 **         This ISR services an unused interrupt/exception vector.

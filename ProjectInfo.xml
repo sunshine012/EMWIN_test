@@ -81,7 +81,6 @@
       <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\Bit1.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\Bit2.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\Cpu.c</PathName>
-      <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\DMA1.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\GPIO1.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\GPIO2.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\LCDC1.c</PathName>
@@ -91,6 +90,7 @@
       <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\Vectors.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Project_Settings\Startup_Code\__arm_end.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Project_Settings\Startup_Code\__arm_start.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\AppDisplay.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\AppTask.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\Appserial.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\Events.c</PathName>
@@ -141,7 +141,6 @@
       <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\Bit1.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\Bit2.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\Cpu.h</PathName>
-      <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\DMA1.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\GPIO1.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\GPIO2.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\IO_Map.h</PathName>
@@ -153,6 +152,7 @@
       <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\SM1.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\TU1.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Project_Settings\Startup_Code\runtime_configuration.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\AppDisplay.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\AppTask.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\Appserial.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\Events.h</PathName>
