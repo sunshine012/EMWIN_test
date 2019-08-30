@@ -20,6 +20,8 @@
 
 // USER START (Optionally insert additional includes)
 #include "AppDisplay.h"
+#include "PE_Types.h"
+#include "Global_data.h"
 // USER END
 
 #include "DIALOG.h"
@@ -30,7 +32,7 @@
 *
 **********************************************************************
 */
-#define ID_WINDOW_0         (GUI_ID_USER + 0x05)
+
 
 
 // USER START (Optionally insert additional defines)
@@ -45,6 +47,8 @@
 
 // USER START (Optionally insert additional static data)
 // USER END
+static float r = 108;
+static float SinTable[60];
 
 /*********************************************************************
 *
@@ -63,48 +67,147 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
 **********************************************************************
 */
 
+static void DrawCircle(void)
+{
+    int x, y;
+    GUI_SetBkColor(GUI_BLACK);
+    GUI_SetColor(GUI_WHITE);
+    GUI_DrawCircle(SCREEN_XSIZE/2, SCREEN_YSIZE/2, (SCREEN_YSIZE - 10)/2);
+    GUI_DrawCircle(SCREEN_XSIZE/2, SCREEN_YSIZE/2, (SCREEN_YSIZE - 10)/2 + 1);
+    GUI_DrawCircle(SCREEN_XSIZE/2, SCREEN_YSIZE/2, (SCREEN_YSIZE - 10)/2 + 2);
+
+    for(uint8 i = 0; i < 60; i++)
+    {
+      x = (int)(r * SinTable[(i + 15)%60]);
+      y = (int)(r * SinTable[i]);
+      if((i % 15) == 0)
+      {
+        GUI_SetColor(GUI_GREEN);
+        GUI_FillCircle(SCREEN_XSIZE/2 + x, SCREEN_YSIZE/2 + y, 4);
+      }
+      else if((i % 5) == 0)
+      {
+        GUI_SetColor(GUI_GREEN);
+        GUI_FillCircle(SCREEN_XSIZE/2 + x, SCREEN_YSIZE/2 + y, 2);
+      }
+      else
+      {
+        GUI_SetColor(GUI_GRAY);
+        GUI_FillCircle(SCREEN_XSIZE/2 + x, SCREEN_YSIZE/2 + y, 1);
+      }	
+    }
+
+    /*GUI_SetPenSize(1);
+    GUI_SetColor(GUI_GRAY);
+    GUI_DrawLine(SCREEN_XSIZE/2, SCREEN_YSIZE/2, SCREEN_XSIZE/2, 20);
+
+    GUI_SetPenSize(3);
+    GUI_SetColor(GUI_BLUE);
+    GUI_DrawLine(SCREEN_XSIZE/2, SCREEN_YSIZE/2, SCREEN_XSIZE/2, 30);
+
+    GUI_SetPenSize(3);
+    GUI_SetColor(GUI_GREEN);
+    GUI_DrawLine(SCREEN_XSIZE/2, SCREEN_YSIZE/2, SCREEN_XSIZE/2, 40);*/
+}
+
+static void DrawLine(void)
+{
+    int x, y;
+    float r;
+    uint32 second_cnt;
+    uint8 clock_second, clock_minute, clock_hour, daycnt;
+    char num_display[12], num_transfer[3];
+
+    second_cnt = TotalTimeSeconds;
+    clock_second = (uint8)(second_cnt % 60);
+    clock_minute = (uint8)((second_cnt / 60) % 60);
+    clock_hour   = (uint8)(((second_cnt / 60) / 60) % 12);
+    daycnt = (uint8)(second_cnt / 86400);
+
+    // second
+    GUI_SetPenSize(1);
+    GUI_SetColor(GUI_GRAY);
+    r = SCREEN_YSIZE/2 - 20;
+    x = SCREEN_XSIZE/2 + (int)(r * SinTable[clock_second]);
+    y = SCREEN_YSIZE/2 - (int)(r * SinTable[(clock_second + 15)%60]);
+    GUI_DrawLine(SCREEN_XSIZE/2, SCREEN_YSIZE/2, x, y);
+
+    // minute
+    GUI_SetPenSize(3);
+    GUI_SetColor(GUI_BLUE);
+    r = SCREEN_YSIZE/2 - 30;
+    x = SCREEN_XSIZE/2 + (int)(r * SinTable[clock_minute]);
+    y = SCREEN_YSIZE/2 - (int)(r * SinTable[(clock_minute + 15)%60]);			
+    GUI_DrawLine(SCREEN_XSIZE/2, SCREEN_YSIZE/2, x, y);
+
+    // Hour
+    GUI_SetPenSize(3);
+    GUI_SetColor(GUI_GREEN);
+    r = SCREEN_YSIZE/2 - 40;
+    x = SCREEN_XSIZE/2 + (int)(r * SinTable[clock_hour * 5 + clock_minute/12]);
+    y = SCREEN_YSIZE/2 - (int)(r * SinTable[((clock_hour * 5 + clock_minute/12 + 15) % 60)]);			
+    GUI_DrawLine(SCREEN_XSIZE/2, SCREEN_YSIZE/2, x, y);
+
+    memset(num_display, 0, 12);
+    // day
+    itoa_re(daycnt, num_transfer, 10, 2);
+    strncpy(num_display, num_transfer, 2);
+    strcat(num_display, ":");
+    // hour
+    itoa_re(clock_hour, num_transfer, 10, 2);
+    strncpy(num_display + 3, num_transfer, 2);
+    strcat(num_display, ":");
+    // minute
+    itoa_re(clock_minute, num_transfer, 10, 2);
+    strncpy(num_display + 6, num_transfer, 2);
+    strcat(num_display, ":");
+    // second
+    itoa_re(clock_second, num_transfer, 10, 2);
+    strncpy(num_display + 9, num_transfer, 2);	
+
+    GUI_SetColor(GUI_WHITE);	
+    GUI_DispStringAt(num_display, (SCREEN_XSIZE - GUI_GetStringDistX(num_display))/2, SCREEN_YSIZE/2 + 16);	
+}
+
 // USER START (Optionally insert additional static code)
 // USER END
+
 
 /*********************************************************************
 *
 *       _cbDialog
 */
 static void _cbDialog(WM_MESSAGE * pMsg) {
-  WM_HWIN hItem;
-  // USER START (Optionally insert additional variables)
-  // USER END
-
-  switch (pMsg->MsgId) {
-    case WM_INIT_DIALOG:
-      //
-      // Initialization of 'Window'
-      //
-      hItem = pMsg->hWin;
-      WINDOW_SetBkColor(hItem, GUI_BLACK);
-      // USER START (Optionally insert additional code for further widget initialization)
-      // USER END
-      break;
-    // USER START (Optionally insert additional message handling)
+    WM_HWIN hItem;
+    // USER START (Optionally insert additional variables)
     // USER END
-    case WM_PAINT:
-        GUI_SetBkColor(GUI_BLACK);
-        /*GUI_Clear();
-        GUI_SetColor(GUI_WHITE);
-        GUI_DrawCircle(SCREEN_XSIZE/2, SCREEN_YSIZE/2, (SCREEN_YSIZE - 10)/2);
-        GUI_DrawCircle(SCREEN_XSIZE/2, SCREEN_YSIZE/2, (SCREEN_YSIZE - 10)/2 + 1);
-        GUI_DrawCircle(SCREEN_XSIZE/2, SCREEN_YSIZE/2, (SCREEN_YSIZE - 10)/2 + 2);
-        GUI_DispStringAt("Hello world", 20, 20);*/
-        break;
+
+    switch (pMsg->MsgId) {
+      case WM_INIT_DIALOG:
+          //
+          // Initialization of 'Window'
+          //
+          hItem = pMsg->hWin;
+          WINDOW_SetBkColor(hItem, GUI_BLACK);
+          // USER START (Optionally insert additional code for further widget initialization)
+          // USER END
+          for(uint8 i = 0; i < 60; i++)
+          {
+            SinTable[i] = (float)sin(PI * i / 30);
+          }
+          break;
+      // USER START (Optionally insert additional message handling)
+      // USER END
+      case WM_PAINT:
+          GUI_MULTIBUF_BeginEx(0);
+          GUI_Clear();
+          DrawCircle();
+          DrawLine();
+          GUI_MULTIBUF_EndEx(0);
+          break;
     
-    case USER_MESSAGE_1:
-        GUI_SetBkColor(GUI_BLACK);
-        GUI_Clear();
-        GUI_SetColor(GUI_WHITE);
-        GUI_DrawCircle(SCREEN_XSIZE/2, SCREEN_YSIZE/2, (SCREEN_YSIZE - 10)/2);
-        GUI_DrawCircle(SCREEN_XSIZE/2, SCREEN_YSIZE/2, (SCREEN_YSIZE - 10)/2 + 1);
-        GUI_DrawCircle(SCREEN_XSIZE/2, SCREEN_YSIZE/2, (SCREEN_YSIZE - 10)/2 + 2);
-        break;
+      case USER_MESSAGE_1:
+          break;
       
     default:
       WM_DefaultProc(pMsg);
@@ -131,5 +234,8 @@ WM_HWIN CreateWindow(void) {
 
 // USER START (Optionally insert additional public code)
 // USER END
+
+
+
 
 /*************************** End of file ****************************/

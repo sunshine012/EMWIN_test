@@ -6,7 +6,6 @@
  */
 
 #include <string.h>
-#include <math.h>
 #include <stdio.h>
 #include "GPIO1.h"
 #include "GPIO2.h"
@@ -183,8 +182,6 @@ void SerialTask( void *pvParameters )
 	}
 }
 
-#define PI		(3.141592653)
-
 void LCDTask( void *pvParameters )
 {
 #ifdef	USE_FREERTOS
@@ -193,67 +190,21 @@ void LCDTask( void *pvParameters )
 #endif
 
 	//char *pstring = "Hello NXP emWin!";
-	//UINT8 *paddr;
-	WM_HWIN hDlg;
-	int x, y;
-	float r;
-	float SinTable[60];
-	uint8 clock_second, clock_minute, clock_hour, pre_second, pre_minute, pre_hour, daycnt;
-	char num_display[12], num_transfer[3];
-
-	r = 108;
 	//GUI_DispStringAt(pstring, (SCREEN_XSIZE - GUI_GetStringDistX(pstring))/2, SCREEN_YSIZE/2);
+	//UINT8 *paddr;
+	
+	WM_HWIN hDlg;
+	GUI_RECT* pRect;
 
 	GUI_Init();
 
 	hDlg = CreateWindow();
 	WM_SelectWindow(hDlg);
-	WM_InvalidateWindow(hDlg);
-	WM_SendMessageNoPara(hDlg, USER_MESSAGE_1);
-	//WM_Exec();
-
-	/*GUI_SetBkColor(GUI_BLACK);
-	GUI_SetColor(GUI_WHITE);
-	GUI_DrawCircle(SCREEN_XSIZE/2, SCREEN_YSIZE/2, (SCREEN_YSIZE - 10)/2);
-	GUI_DrawCircle(SCREEN_XSIZE/2, SCREEN_YSIZE/2, (SCREEN_YSIZE - 10)/2 + 1);
-	GUI_DrawCircle(SCREEN_XSIZE/2, SCREEN_YSIZE/2, (SCREEN_YSIZE - 10)/2 + 2);
-
-	for(uint8 i = 0; i < 60; i++)
-	{
-		SinTable[i] = (float)sin(PI * i / 30);
-		x = (int)(r * cos(PI * i / 30));
-		y = (int)(r * sin(PI * i / 30));
-		if((i % 15) == 0)
-		{
-			GUI_SetColor(GUI_GREEN);
-			GUI_FillCircle(SCREEN_XSIZE/2 + x, SCREEN_YSIZE/2 + y, 4);
-		}
-		else if((i % 5) == 0)
-		{
-			GUI_SetColor(GUI_GREEN);
-			GUI_FillCircle(SCREEN_XSIZE/2 + x, SCREEN_YSIZE/2 + y, 2);
-		}
-		else
-		{
-			GUI_SetColor(GUI_GRAY);
-			GUI_FillCircle(SCREEN_XSIZE/2 + x, SCREEN_YSIZE/2 + y, 1);
-		}	
-	}
-
-	GUI_SetPenSize(1);
-	GUI_SetColor(GUI_GRAY);
-	GUI_DrawLine(SCREEN_XSIZE/2, SCREEN_YSIZE/2, SCREEN_XSIZE/2, 20);
-
-	GUI_SetPenSize(3);
-	GUI_SetColor(GUI_BLUE);
-	GUI_DrawLine(SCREEN_XSIZE/2, SCREEN_YSIZE/2, SCREEN_XSIZE/2, 30);
-
-	GUI_SetPenSize(3);
-	GUI_SetColor(GUI_GREEN);
-	GUI_DrawLine(SCREEN_XSIZE/2, SCREEN_YSIZE/2, SCREEN_XSIZE/2, 40);
-	WM_Paint(hDlg);
-	WM_InvalidateWindow(hDlg);
-	WM_Exec();*/
+	//WM_SendMessageNoPara(hDlg, USER_MESSAGE_1);
+	pRect->x0 = 0;
+	pRect->y0 = 0;
+	pRect->x1 = 1;
+	pRect->y1 = 1;
 
 #ifndef	USE_FREERTOS
 	clockstart = 1;
@@ -262,10 +213,13 @@ void LCDTask( void *pvParameters )
 #endif
 	while(1)
 	{
-		GUI_X_Delay(2);
+		WM_InvalidateRect(hDlg, pRect);
+		//WM_InvalidateWindow(hDlg);
+		GUI_X_Delay(10);
+		WM_Exec();
 	}
 
-	for(;;)
+	/*for(;;)
 	{
 		//rValue = xTaskNotifyWait(0, 0xFFFFFFFF, &rNotificationValue, portMAX_DELAY);
 		//if(rValue == pdTRUE)
@@ -277,81 +231,11 @@ void LCDTask( void *pvParameters )
 			GUI_MULTIBUF_EndEx(0);
 			vPortFree(paddr);*/
 		//}
-		if(clockstart)
+		/*if(clockstart)
 		{
-			pre_second = clock_second;
-			pre_minute = clock_minute;
-			pre_hour = clock_hour;
-			clock_second = (uint8)(TotalTimeSeconds % 60);
-			clock_minute = (uint8)((TotalTimeSeconds / 60) % 60);
-			clock_hour   = (uint8)(((TotalTimeSeconds / 60) / 60) % 12);
-			daycnt = (uint8)(TotalTimeSeconds / 86400);
 
-			GUI_MULTIBUF_BeginEx(0);
-			//GUI_Clear();
-			// second
-			GUI_SetPenSize(1);
-			r = SCREEN_YSIZE/2 - 20;
-			x = SCREEN_XSIZE/2 + (int)(r * SinTable[pre_second]);
-			y = SCREEN_YSIZE/2 - (int)(r * SinTable[(pre_second + 15)%60]);
-			GUI_SetColor(GUI_BLACK);
-			GUI_DrawLine(SCREEN_XSIZE/2, SCREEN_YSIZE/2, x, y);
 
-			GUI_SetColor(GUI_GRAY);
-			x = SCREEN_XSIZE/2 + (int)(r * SinTable[clock_second]);
-			y = SCREEN_YSIZE/2 - (int)(r * SinTable[(clock_second + 15)%60]);
-			GUI_DrawLine(SCREEN_XSIZE/2, SCREEN_YSIZE/2, x, y);
 
-			// minute
-			GUI_SetPenSize(3);
-			r = SCREEN_YSIZE/2 - 30;
-			if(pre_minute != clock_minute)
-			{
-				x = SCREEN_XSIZE/2 + (int)(r * SinTable[pre_minute]);
-				y = SCREEN_YSIZE/2 - (int)(r * SinTable[(pre_minute + 15)%60]);				
-				GUI_SetColor(GUI_BLACK);
-				GUI_DrawLine(SCREEN_XSIZE/2, SCREEN_YSIZE/2, x, y);
-			}
-			x = SCREEN_XSIZE/2 + (int)(r * SinTable[clock_minute]);
-			y = SCREEN_YSIZE/2 - (int)(r * SinTable[(clock_minute + 15)%60]);			
-			GUI_SetColor(GUI_BLUE);
-			GUI_DrawLine(SCREEN_XSIZE/2, SCREEN_YSIZE/2, x, y);
-
-			// Hour
-			GUI_SetPenSize(3);
-			r = SCREEN_YSIZE/2 - 40;
-			if((pre_hour + pre_minute / 12) != (clock_hour + clock_minute / 12))
-			{
-				x = SCREEN_XSIZE/2 + (int)(r * SinTable[pre_hour * 5 + pre_minute/12]);
-				y = SCREEN_YSIZE/2 - (int)(r * SinTable[((pre_hour * 5 + pre_minute/12 + 15) % 60)]);				
-				GUI_SetColor(GUI_BLACK);
-				GUI_DrawLine(SCREEN_XSIZE/2, SCREEN_YSIZE/2, x, y);
-			}
-			x = SCREEN_XSIZE/2 + (int)(r * SinTable[clock_hour * 5 + clock_minute/12]);
-			y = SCREEN_YSIZE/2 - (int)(r * SinTable[((clock_hour * 5 + clock_minute/12 + 15) % 60)]);			
-			GUI_SetColor(GUI_GREEN);
-			GUI_DrawLine(SCREEN_XSIZE/2, SCREEN_YSIZE/2, x, y);
-
-			memset(num_display, 0, 12);
-			// day
-			itoa_re(daycnt, num_transfer, 10, 2);
-			strncpy(num_display, num_transfer, 2);
-			strcat(num_display, ":");
-			// hour
-			itoa_re(clock_hour, num_transfer, 10, 2);
-			strncpy(num_display + 3, num_transfer, 2);
-			strcat(num_display, ":");
-			// minute
-			itoa_re(clock_minute, num_transfer, 10, 2);
-			strncpy(num_display + 6, num_transfer, 2);
-			strcat(num_display, ":");
-			// second
-			itoa_re(clock_second, num_transfer, 10, 2);
-			strncpy(num_display + 9, num_transfer, 2);	
-
-			GUI_SetColor(GUI_WHITE);	
-			GUI_DispStringAt(num_display, (SCREEN_XSIZE - GUI_GetStringDistX(num_display))/2, SCREEN_YSIZE/2 + 16);	
-			GUI_MULTIBUF_EndEx(0);
 
 #ifdef	USE_FREERTOS
 			vTaskSuspend(NULL);
@@ -359,7 +243,7 @@ void LCDTask( void *pvParameters )
 			GUI_X_Delay(5);
 #endif
 		}
-	}
+	}*/
 }
 
 char *itoa_re(int num, char *str, int radix, int strlength)
