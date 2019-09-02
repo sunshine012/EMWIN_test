@@ -145,26 +145,6 @@ void AS1_OnFullRxBuf(void);
 */
 void AS1_OnFreeTxBuf(void);
 
-/*
-** ===================================================================
-**     Event       :  LCDC1_OnEndOfFrame (module Events)
-**
-**     Component   :  LCDC1 [LCDC_LDD]
-*/
-/*!
-**     @brief
-**         This event is called when end of new frame is reached. 
-**     @param
-**         UserDataPtr     - Pointer to the user or
-**                           RTOS specific data. This pointer is passed
-**                           as the parameter of Init method.
-**     @param
-**         PlaneID         - Plane specification where the
-**                           event occured. 
-*/
-/* ===================================================================*/
-void LCDC1_OnEndOfFrame(LDD_TUserData *UserDataPtr, LDD_LCDC_TPlaneID PlaneID);
-
 /* END Events */
 
 #ifdef __cplusplus

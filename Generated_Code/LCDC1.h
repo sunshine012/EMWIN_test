@@ -6,18 +6,13 @@
 **     Component   : LCDC_LDD
 **     Version     : Component 01.025, Driver 01.02, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2019-08-30, 16:21, # CodeGen: 148
+**     Date/Time   : 2019-09-02, 15:06, # CodeGen: 155
 **     Abstract    :
 **
 **     Settings    :
 **          Component name                                 : LCDC1
 **          Device                                         : LCDC
-**          Interrupt service                              : Enabled
-**            Interrupt                                    : INT_LCD
-**            Interrupt priority                           : medium priority
-**            Plane 0 interrupt                            : End of frame
-**            Plane 1 interrupt                            : End of frame
-**            Interrupt event                              : First/last memory read
+**          Interrupt service                              : Disabled
 **          Panel type                                     : TFT
 **            Bits per pixel                               : 24
 **            Width in pixels                              : 320
@@ -179,7 +174,7 @@
 **            Start in self-refresh mode                   : no
 **            Event mask                                   : 
 **              OnError                                    : Disabled
-**              OnEndOfFrame                               : Enabled
+**              OnEndOfFrame                               : Disabled
 **              OnStartOfFrame                             : Disabled
 **            Auto initialization                          : no
 **          CPU clock/configuration selection              : 
@@ -196,6 +191,7 @@
 **         SetupBitmap            - LDD_TError LCDC1_SetupBitmap(LDD_TDeviceData *DeviceDataPtr,...
 **         SetupWindow            - LDD_TError LCDC1_SetupWindow(LDD_TDeviceData *DeviceDataPtr,...
 **         SetupWindowPosOnScreen - LDD_TError LCDC1_SetupWindowPosOnScreen(LDD_TDeviceData *DeviceDataPtr,...
+**         Main                   - void LCDC1_Main(LDD_TDeviceData *DeviceDataPtr);
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -292,9 +288,9 @@ typedef LCDC1_TDeviceData *LCDC1_TDeviceDataPtr; /* Pointer to the device data s
 #define LCDC1_SetupBitmap_METHOD_ENABLED /*!< SetupBitmap method of the component LCDC1 is enabled (generated) */
 #define LCDC1_SetupWindow_METHOD_ENABLED /*!< SetupWindow method of the component LCDC1 is enabled (generated) */
 #define LCDC1_SetupWindowPosOnScreen_METHOD_ENABLED /*!< SetupWindowPosOnScreen method of the component LCDC1 is enabled (generated) */
+#define LCDC1_Main_METHOD_ENABLED      /*!< Main method of the component LCDC1 is enabled (generated) */
 
 /* Events configuration constants - generated for all enabled component's events */
-#define LCDC1_OnEndOfFrame_EVENT_ENABLED /*!< OnEndOfFrame event of the component LCDC1 is enabled (generated) */
 
 /*
 ** ===================================================================
@@ -314,6 +310,22 @@ typedef LCDC1_TDeviceData *LCDC1_TDeviceDataPtr; /* Pointer to the device data s
 */
 /* ===================================================================*/
 LDD_TDeviceData* LCDC1_Init(LDD_TUserData *UserDataPtr);
+
+/*
+** ===================================================================
+**     Method      :  LCDC1_Main (component LCDC_LDD)
+*/
+/*!
+**     @brief
+**         This method is available only in polling mode. If interrupt
+**         service is disabled this method replaces the RNG interrupt
+**         handler. 
+**     @param
+**         DeviceDataPtr   - Device data structure
+**                           pointer returned by Init method. 
+*/
+/* ===================================================================*/
+void LCDC1_Main(LDD_TDeviceData *DeviceDataPtr);
 
 /*
 ** ===================================================================

@@ -6,18 +6,13 @@
 **     Component   : LCDC_LDD
 **     Version     : Component 01.025, Driver 01.02, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2019-08-30, 16:21, # CodeGen: 148
+**     Date/Time   : 2019-09-02, 15:06, # CodeGen: 155
 **     Abstract    :
 **
 **     Settings    :
 **          Component name                                 : LCDC1
 **          Device                                         : LCDC
-**          Interrupt service                              : Enabled
-**            Interrupt                                    : INT_LCD
-**            Interrupt priority                           : medium priority
-**            Plane 0 interrupt                            : End of frame
-**            Plane 1 interrupt                            : End of frame
-**            Interrupt event                              : First/last memory read
+**          Interrupt service                              : Disabled
 **          Panel type                                     : TFT
 **            Bits per pixel                               : 24
 **            Width in pixels                              : 320
@@ -179,7 +174,7 @@
 **            Start in self-refresh mode                   : no
 **            Event mask                                   : 
 **              OnError                                    : Disabled
-**              OnEndOfFrame                               : Enabled
+**              OnEndOfFrame                               : Disabled
 **              OnStartOfFrame                             : Disabled
 **            Auto initialization                          : no
 **          CPU clock/configuration selection              : 
@@ -196,6 +191,7 @@
 **         SetupBitmap            - LDD_TError LCDC1_SetupBitmap(LDD_TDeviceData *DeviceDataPtr,...
 **         SetupWindow            - LDD_TError LCDC1_SetupWindow(LDD_TDeviceData *DeviceDataPtr,...
 **         SetupWindowPosOnScreen - LDD_TError LCDC1_SetupWindowPosOnScreen(LDD_TDeviceData *DeviceDataPtr,...
+**         Main                   - void LCDC1_Main(LDD_TDeviceData *DeviceDataPtr);
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -241,7 +237,6 @@
 
 /* MODULE LCDC1. */
 /* {Default RTOS Adapter} No RTOS includes */
-#include "Events.h"
 #include "LCDC1.h"
 
 #ifdef __cplusplus
@@ -249,8 +244,6 @@ extern "C" {
 #endif 
 /* {Default RTOS Adapter} Static object used for simulation of dynamic driver memory allocation */
 static LCDC1_TDeviceData DeviceDataPrv__DEFAULT_RTOS_ALLOC;
-/* {Default RTOS Adapter} Global variable used for passing a parameter into ISR */
-static LCDC1_TDeviceDataPtr INT_LCD__DEFAULT_RTOS_ISRPARAM;
  
 
 #define INIT_L0_BITMAP 0x01U
@@ -260,9 +253,7 @@ static LCDC1_TDeviceDataPtr INT_LCD__DEFAULT_RTOS_ISRPARAM;
 #define INIT_L1_WINDOW 0x08U
 #define INIT_L1_DONE 0x0CU
 
-#define LCDC1_INIT_EVENTS_MASK ( \
-                                  LDD_LCDC_ON_END_OF_FRAME \
-                              )
+#define LCDC1_INIT_EVENTS_MASK 0U
 /*
 ** ===================================================================
 **     Method      :  LCDC1_Init (component LCDC_LDD)
@@ -288,12 +279,7 @@ LDD_TDeviceData* LCDC1_Init(LDD_TUserData *UserDataPtr)
   /* {Default RTOS Adapter} Driver memory allocation: Dynamic allocation is simulated by a pointer to the static object */
   DeviceDataPrv = &DeviceDataPrv__DEFAULT_RTOS_ALLOC;
 
-  /* NVICIP97: PRI97=0x80 */
-  NVICIP97 = NVIC_IP_PRI97(0x80);
   LCDC_PDD_DisableLCD(LCDC_BASE_PTR); /* Disable LCD */
-  /* Allocate interrupt vector */
-  /* {Default RTOS Adapter} Set interrupt vector: IVT is static, ISR parameter is passed by the global variable */
-  INT_LCD__DEFAULT_RTOS_ISRPARAM = DeviceDataPrv;
 
   /* Pin initialization */
   /* PORTD_PCR12: ISF=0,MUX=7 */
@@ -547,10 +533,6 @@ LDD_TDeviceData* LCDC1_Init(LDD_TUserData *UserDataPtr)
   (void)LCDC_PDD_ReadInterruptStatus(LCDC_BASE_PTR); /* Clear interrupt status flags */
   /* Registration of the device structure */
   PE_LDD_RegisterDeviceStructure(PE_LDD_COMPONENT_LCDC1_ID,DeviceDataPrv);
-  /* NVICIP97: PRI97=0x80 */
-  NVICIP97 = NVIC_IP_PRI97(0x80);
-  /* NVICISER3: SETENA|=2 */
-  NVICISER3 |= NVIC_ISER_SETENA(0x02);
   LCDC_PDD_SelfRefreshMode(LCDC_BASE_PTR, LCDC_PDD_SELF_REF_DISABLED); /* Disable LCD self refresh mode */
   LCDC_PDD_EnableLCD(LCDC_BASE_PTR); /* Enable LCD */
   return DeviceDataPrv;                /* Return pointer to the data data structure */
@@ -558,26 +540,24 @@ LDD_TDeviceData* LCDC1_Init(LDD_TUserData *UserDataPtr)
 
 /*
 ** ===================================================================
-**     Method      :  LCDC1_Interrupt (component LCDC_LDD)
-**
-**     Description :
-**         The method services the interrupt of the selected peripheral(s)
-**         and eventually invokes event(s) of the component.
-**         This method is internal. It is used by Processor Expert only.
-** ===================================================================
+**     Method      :  LCDC1_Main (component LCDC_LDD)
 */
-PE_ISR(LCDC1_Interrupt)
+/*!
+**     @brief
+**         This method is available only in polling mode. If interrupt
+**         service is disabled this method replaces the RNG interrupt
+**         handler. 
+**     @param
+**         DeviceDataPtr   - Device data structure
+**                           pointer returned by Init method. 
+*/
+/* ===================================================================*/
+void LCDC1_Main(LDD_TDeviceData *DeviceDataPtr)
 {
-  /* {Default RTOS Adapter} ISR parameter is passed through the global variable */
-  LCDC1_TDeviceDataPtr DeviceDataPrv = INT_LCD__DEFAULT_RTOS_ISRPARAM;
-  uint32_t sr = LCDC_PDD_ReadInterruptStatus(LCDC_BASE_PTR);
-  if ((sr & LCDC_PDD_END_OF_FRAME))  {
-    LCDC1_OnEndOfFrame(DeviceDataPrv->UserDataPtr, LDD_LCDC_PLANE_0);
-  }
-  if ((sr & LCDC_PDD_GW_END_OF_FRAME))  {
-    LCDC1_OnEndOfFrame(DeviceDataPrv->UserDataPtr, LDD_LCDC_PLANE_1);
-  }
+  (void)LCDC_PDD_ReadInterruptStatus(LCDC_BASE_PTR); /* Dummy read of Interrupt Status Register to clear flags */
+  (void)DeviceDataPtr;                 /* Parameter is not used, suppress unused argument warning */
 }
+
 /*
 ** ===================================================================
 **     Method      :  LCDC1_SetupBitmap (component LCDC_LDD)

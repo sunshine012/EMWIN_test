@@ -5,7 +5,7 @@
 **     Processor   : MK70FN1M0VMJ15
 **     Version     : Component 01.028, Driver 01.04, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2019-08-30, 17:07, # CodeGen: 153
+**     Date/Time   : 2019-09-02, 15:06, # CodeGen: 155
 **     Abstract    :
 **
 **     Settings    :
@@ -195,7 +195,7 @@
     (tIsrFunc)&Cpu_ivINT_SWI,          /* 0x6E  0x000001B8   -   ivINT_SWI                      unused by PE */
     (tIsrFunc)&Cpu_ivINT_NFC,          /* 0x6F  0x000001BC   -   ivINT_NFC                      unused by PE */
     (tIsrFunc)&Cpu_ivINT_USBHS,        /* 0x70  0x000001C0   -   ivINT_USBHS                    unused by PE */
-    (tIsrFunc)&LCDC1_Interrupt,        /* 0x71  0x000001C4   8   ivINT_LCD                      used by PE */
+    (tIsrFunc)&Cpu_ivINT_LCD,          /* 0x71  0x000001C4   -   ivINT_LCD                      unused by PE */
     (tIsrFunc)&Cpu_ivINT_CMP3,         /* 0x72  0x000001C8   -   ivINT_CMP3                     unused by PE */
     (tIsrFunc)&Cpu_ivINT_Reserved115,  /* 0x73  0x000001CC   -   ivINT_Reserved115              unused by PE */
     (tIsrFunc)&Cpu_ivINT_Reserved116,  /* 0x74  0x000001D0   -   ivINT_Reserved116              unused by PE */
