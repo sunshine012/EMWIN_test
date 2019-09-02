@@ -19,6 +19,7 @@
 #include "pictures.h"
 #include "AppDisplay.h"
 
+void DrvWatchDogDisable(void);
 #ifdef	USE_FREERTOS
 	EventGroupHandle_t xKeyEventGroup;
 	TaskHandle_t	StartTask_Handle;
@@ -72,7 +73,7 @@ void AppStartRTOS(void)
 #endif
 
 	(void)TU1_Init(NULL);
-	//WDog1_Disable(NULL);
+	DrvWatchDogDisable();
 
 #ifdef	USE_FREERTOS
 	xKeyEventGroup = xEventGroupCreate();
@@ -214,7 +215,7 @@ void LCDTask( void *pvParameters )
 	{
 		WM_InvalidateRect(hDlg, pRect);
 		//WM_InvalidateWindow(hDlg);
-		GUI_X_Delay(10);
+		GUI_X_Delay(40);
 		WM_Exec();
 	}
 
@@ -244,3 +245,15 @@ void LCDTask( void *pvParameters )
 		}
 	}*/
 }
+
+void DrvWatchDogDisable(void)
+{
+	volatile UINT32 delay = 50;
+
+	WDOG_UNLOCK = 0xC520;               //watchdog unlock
+   	WDOG_UNLOCK = 0xD928;                                       
+                                       //disable watchdog
+   	WDOG_STCTRLH &= ~(WDOG_STCTRLH_WDOGEN_MASK);
+                                       //needs to be at least 256 bus clock cycles
+   	while(delay--);                   //before watchdog registers can be modified again
+}  
