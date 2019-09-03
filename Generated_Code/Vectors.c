@@ -5,7 +5,7 @@
 **     Processor   : MK70FN1M0VMJ15
 **     Version     : Component 01.028, Driver 01.04, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2019-09-02, 15:06, # CodeGen: 155
+**     Date/Time   : 2019-09-02, 16:10, # CodeGen: 156
 **     Abstract    :
 **
 **     Settings    :
@@ -63,6 +63,8 @@
   #include "Bit2.h"
   #include "LCDC1.h"
   #include "SM1.h"
+  #include "DMACH1.h"
+  #include "DMA1.h"
   #include "Events.h"
 
 
@@ -98,7 +100,7 @@
     (tIsrFunc)&Cpu_ivINT_Reserved13,   /* 0x0D  0x00000034   -   ivINT_Reserved13               unused by PE */
     (tIsrFunc)&Cpu_ivINT_PendableSrvReq, /* 0x0E  0x00000038   -   ivINT_PendableSrvReq           unused by PE */
     (tIsrFunc)&Cpu_ivINT_SysTick,      /* 0x0F  0x0000003C   -   ivINT_SysTick                  unused by PE */
-    (tIsrFunc)&Cpu_ivINT_DMA0_DMA16,   /* 0x10  0x00000040   -   ivINT_DMA0_DMA16               unused by PE */
+    (tIsrFunc)&DMA1_INT_DMA0_DMA16_TransferComplete_ISR, /* 0x10  0x00000040   8   ivINT_DMA0_DMA16               used by PE */
     (tIsrFunc)&Cpu_ivINT_DMA1_DMA17,   /* 0x11  0x00000044   -   ivINT_DMA1_DMA17               unused by PE */
     (tIsrFunc)&Cpu_ivINT_DMA2_DMA18,   /* 0x12  0x00000048   -   ivINT_DMA2_DMA18               unused by PE */
     (tIsrFunc)&Cpu_ivINT_DMA3_DMA19,   /* 0x13  0x0000004C   -   ivINT_DMA3_DMA19               unused by PE */
@@ -114,7 +116,7 @@
     (tIsrFunc)&Cpu_ivINT_DMA13_DMA29,  /* 0x1D  0x00000074   -   ivINT_DMA13_DMA29              unused by PE */
     (tIsrFunc)&Cpu_ivINT_DMA14_DMA30,  /* 0x1E  0x00000078   -   ivINT_DMA14_DMA30              unused by PE */
     (tIsrFunc)&Cpu_ivINT_DMA15_DMA31,  /* 0x1F  0x0000007C   -   ivINT_DMA15_DMA31              unused by PE */
-    (tIsrFunc)&Cpu_ivINT_DMA_Error,    /* 0x20  0x00000080   -   ivINT_DMA_Error                unused by PE */
+    (tIsrFunc)&DMA1_INT_DMA_Error_TransferError_ISR, /* 0x20  0x00000080   8   ivINT_DMA_Error                used by PE */
     (tIsrFunc)&Cpu_ivINT_MCM,          /* 0x21  0x00000084   -   ivINT_MCM                      unused by PE */
     (tIsrFunc)&Cpu_ivINT_FTFE,         /* 0x22  0x00000088   -   ivINT_FTFE                     unused by PE */
     (tIsrFunc)&Cpu_ivINT_Read_Collision, /* 0x23  0x0000008C   -   ivINT_Read_Collision           unused by PE */

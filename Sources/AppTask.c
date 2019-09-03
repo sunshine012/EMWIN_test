@@ -205,6 +205,8 @@ void LCDTask( void *pvParameters )
 	pRect->y0 = 0;
 	pRect->x1 = 1;
 	pRect->y1 = 1;
+	WM_InvalidateRect(hDlg, pRect);
+	WM_Exec();
 
 #ifndef	USE_FREERTOS
 	clockstart = 1;
@@ -213,10 +215,12 @@ void LCDTask( void *pvParameters )
 #endif
 	while(1)
 	{
-		WM_InvalidateRect(hDlg, pRect);
-		//WM_InvalidateWindow(hDlg);
-		GUI_X_Delay(40);
-		WM_Exec();
+		GUI_X_Delay(20);
+		if(DMACH1_GetTransferCompleteStatus(pDMA_device))
+		{
+			WM_InvalidateRect(hDlg, pRect);
+			WM_Exec();
+		}
 	}
 
 	/*for(;;)

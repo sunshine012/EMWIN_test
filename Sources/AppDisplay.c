@@ -122,7 +122,7 @@ static void DrawLine(void)
     second_cnt = TotalTimeSeconds;
     clock_second = (uint8)(second_cnt % 60);
     clock_minute = (uint8)((second_cnt / 60) % 60);
-    clock_hour   = (uint8)(((second_cnt / 60) / 60) % 12);
+    clock_hour   = (uint8)(((second_cnt / 60) / 60) % 24);
     daycnt = (uint8)(second_cnt / 86400);
 
     // second

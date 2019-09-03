@@ -43,6 +43,8 @@
 #include "Bit2.h"
 #include "LCDC1.h"
 #include "SM1.h"
+#include "DMACH1.h"
+#include "DMA1.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -144,6 +146,44 @@ void AS1_OnFullRxBuf(void);
 ** ===================================================================
 */
 void AS1_OnFreeTxBuf(void);
+
+/*
+** ===================================================================
+**     Event       :  DMACH1_OnComplete (module Events)
+**
+**     Component   :  DMACH1 [DMAChannel_LDD]
+*/
+/*!
+**     @brief
+**         Called at the end of a DMA transfer. If the Half complete
+**         property in initialization section is enabled, this event is
+**         also called when current major iteration count reaches the
+**         halfway point. See SetEventMask() and GetEventMask() methods.
+**     @param
+**         UserDataPtr     - Pointer to the user or
+**                           RTOS specific data. This pointer is passed
+**                           as the parameter of Init method.
+*/
+/* ===================================================================*/
+void DMACH1_OnComplete(LDD_TUserData *UserDataPtr);
+
+/*
+** ===================================================================
+**     Event       :  DMACH1_OnError (module Events)
+**
+**     Component   :  DMACH1 [DMAChannel_LDD]
+*/
+/*!
+**     @brief
+**         Called when error in channel settings is detected. See
+**         SetEventMask() and GetEventMask() methods.
+**     @param
+**         UserDataPtr     - Pointer to the user or
+**                           RTOS specific data. This pointer is passed
+**                           as the parameter of Init method.
+*/
+/* ===================================================================*/
+void DMACH1_OnError(LDD_TUserData *UserDataPtr);
 
 /* END Events */
 

@@ -7,7 +7,7 @@
 **     Version     : Component 01.028, Driver 01.04, CPU db: 3.00.000
 **     Datasheet   : K70P256M150SF3RM, Rev. 2, Dec 2011
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2019-09-02, 15:06, # CodeGen: 155
+**     Date/Time   : 2019-09-02, 16:10, # CodeGen: 156
 **     Abstract    :
 **
 **     Settings    :
@@ -337,17 +337,6 @@ PE_ISR(Cpu_ivINT_SysTick);
 ** ===================================================================
 */
 
-PE_ISR(Cpu_ivINT_DMA0_DMA16);
-/*
-** ===================================================================
-**     Method      :  Cpu_Cpu_ivINT_DMA0_DMA16 (component MK70FN1M0MJ15)
-**
-**     Description :
-**         This ISR services an unused interrupt/exception vector.
-**         This method is internal. It is used by Processor Expert only.
-** ===================================================================
-*/
-
 PE_ISR(Cpu_ivINT_DMA1_DMA17);
 /*
 ** ===================================================================
@@ -506,17 +495,6 @@ PE_ISR(Cpu_ivINT_DMA15_DMA31);
 /*
 ** ===================================================================
 **     Method      :  Cpu_Cpu_ivINT_DMA15_DMA31 (component MK70FN1M0MJ15)
-**
-**     Description :
-**         This ISR services an unused interrupt/exception vector.
-**         This method is internal. It is used by Processor Expert only.
-** ===================================================================
-*/
-
-PE_ISR(Cpu_ivINT_DMA_Error);
-/*
-** ===================================================================
-**     Method      :  Cpu_Cpu_ivINT_DMA_Error (component MK70FN1M0MJ15)
 **
 **     Description :
 **         This ISR services an unused interrupt/exception vector.

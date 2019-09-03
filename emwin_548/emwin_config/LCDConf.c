@@ -39,6 +39,7 @@ Purpose     : Display controller configuration (single layer)
 #include "LCDConf.h"
 //#include "GUIDRV_Template.h"
 #include "GUIDRV_Lin.h"
+#include "Global_data.h"
 
 /*********************************************************************
 *
@@ -247,7 +248,7 @@ int LCD_X_DisplayDriver(unsigned LayerIndex, unsigned Cmd, void * pData) {
 static void _CopyBuffer(int LayerIndex, int IndexSrc, int IndexDst) 
 {
     unsigned long BufferSize, AddrSrc, AddrDst;
-    int bits_per_pixel;
+    UINT32 bits_per_pixel;
     //
     // Calculate the size of one frame buffer
     //
@@ -259,6 +260,13 @@ static void _CopyBuffer(int LayerIndex, int IndexSrc, int IndexDst)
     //
     AddrSrc = VRAM_ADDR + BufferSize * IndexSrc;
     AddrDst = VRAM_ADDR + BufferSize * IndexDst;
-    memcpy((void *)AddrDst, (void *)AddrSrc, BufferSize);
+
+    DMACH1_SetSourceAddress(pDMA_device, (void *)AddrSrc);
+    DMACH1_SetDestinationAddress(pDMA_device, (void *)AddrDst);
+    DMACH1_SetTransactionCount(pDMA_device, BufferSize);
+    DMACH1_SetRequestCount(pDMA_device, 1);
+    DMACH1_StartTransfer(pDMA_device);
+
+    //memcpy((void *)AddrDst, (void *)AddrSrc, BufferSize);
 }
 /*************************** End of file ****************************/

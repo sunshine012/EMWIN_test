@@ -5,7 +5,7 @@
 **     Processor   : MK70FN1M0VMJ15
 **     Version     : Component 01.028, Driver 01.04, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2019-08-30, 17:07, # CodeGen: 153
+**     Date/Time   : 2019-09-02, 16:10, # CodeGen: 156
 **     Abstract    :
 **
 **     Settings    :
@@ -69,6 +69,8 @@
 #include "Bit2.h"
 #include "LCDC1.h"
 #include "SM1.h"
+#include "DMACH1.h"
+#include "DMA1.h"
 
 
 /*

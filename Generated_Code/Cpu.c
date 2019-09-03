@@ -7,7 +7,7 @@
 **     Version     : Component 01.028, Driver 01.04, CPU db: 3.00.000
 **     Datasheet   : K70P256M150SF3RM, Rev. 2, Dec 2011
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2019-09-02, 15:06, # CodeGen: 155
+**     Date/Time   : 2019-09-02, 16:27, # CodeGen: 159
 **     Abstract    :
 **
 **     Settings    :
@@ -70,6 +70,8 @@
 #include "Bit2.h"
 #include "LCDC1.h"
 #include "SM1.h"
+#include "DMACH1.h"
+#include "DMA1.h"
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
@@ -308,21 +310,6 @@ PE_ISR(Cpu_ivINT_SysTick)
 
 /*
 ** ===================================================================
-**     Method      :  Cpu_Cpu_ivINT_DMA0_DMA16 (component MK70FN1M0MJ15)
-**
-**     Description :
-**         This ISR services an unused interrupt/exception vector.
-**         This method is internal. It is used by Processor Expert only.
-** ===================================================================
-*/
-PE_ISR(Cpu_ivINT_DMA0_DMA16)
-{
-  /* This code can be changed using the CPU component property "Build Options / Unhandled int code" */
-  PE_DEBUGHALT();
-}
-
-/*
-** ===================================================================
 **     Method      :  Cpu_Cpu_ivINT_DMA1_DMA17 (component MK70FN1M0MJ15)
 **
 **     Description :
@@ -541,21 +528,6 @@ PE_ISR(Cpu_ivINT_DMA14_DMA30)
 ** ===================================================================
 */
 PE_ISR(Cpu_ivINT_DMA15_DMA31)
-{
-  /* This code can be changed using the CPU component property "Build Options / Unhandled int code" */
-  PE_DEBUGHALT();
-}
-
-/*
-** ===================================================================
-**     Method      :  Cpu_Cpu_ivINT_DMA_Error (component MK70FN1M0MJ15)
-**
-**     Description :
-**         This ISR services an unused interrupt/exception vector.
-**         This method is internal. It is used by Processor Expert only.
-** ===================================================================
-*/
-PE_ISR(Cpu_ivINT_DMA_Error)
 {
   /* This code can be changed using the CPU component property "Build Options / Unhandled int code" */
   PE_DEBUGHALT();

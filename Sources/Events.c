@@ -185,6 +185,50 @@ void AS1_OnFreeTxBuf(void)
   /* Write your code here ... */
 }
 
+/*
+** ===================================================================
+**     Event       :  DMACH1_OnComplete (module Events)
+**
+**     Component   :  DMACH1 [DMAChannel_LDD]
+*/
+/*!
+**     @brief
+**         Called at the end of a DMA transfer. If the Half complete
+**         property in initialization section is enabled, this event is
+**         also called when current major iteration count reaches the
+**         halfway point. See SetEventMask() and GetEventMask() methods.
+**     @param
+**         UserDataPtr     - Pointer to the user or
+**                           RTOS specific data. This pointer is passed
+**                           as the parameter of Init method.
+*/
+/* ===================================================================*/
+void DMACH1_OnComplete(LDD_TUserData *UserDataPtr)
+{
+  /* Write your code here ... */
+}
+
+/*
+** ===================================================================
+**     Event       :  DMACH1_OnError (module Events)
+**
+**     Component   :  DMACH1 [DMAChannel_LDD]
+*/
+/*!
+**     @brief
+**         Called when error in channel settings is detected. See
+**         SetEventMask() and GetEventMask() methods.
+**     @param
+**         UserDataPtr     - Pointer to the user or
+**                           RTOS specific data. This pointer is passed
+**                           as the parameter of Init method.
+*/
+/* ===================================================================*/
+void DMACH1_OnError(LDD_TUserData *UserDataPtr)
+{
+  /* Write your code here ... */
+}
+
 /* END Events */
 
 #ifdef __cplusplus

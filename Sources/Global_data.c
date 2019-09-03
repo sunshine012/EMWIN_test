@@ -27,3 +27,5 @@ uint8   clockstart;
 uint16  TimeCounter;
 uint32  TotalTimeSeconds;
 
+LDD_TDeviceData *pDMA_device;
+
