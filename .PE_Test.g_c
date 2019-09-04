@@ -158,7 +158,7 @@
     </GenFiles>
     <SignalListFile>Documentation\PE_Test_SIGNALS.txt</SignalListFile>
     <DestinationCompiler>GNUC</DestinationCompiler>
-    <ProjectModificationStamp>141</ProjectModificationStamp>
+    <ProjectModificationStamp>142</ProjectModificationStamp>
   </Options>
   <CpuID_2>
     <Generated>false</Generated>

@@ -97,18 +97,6 @@ static void DrawCircle(void)
         GUI_FillCircle(SCREEN_XSIZE/2 + x, SCREEN_YSIZE/2 + y, 1);
       }	
     }
-
-    /*GUI_SetPenSize(1);
-    GUI_SetColor(GUI_GRAY);
-    GUI_DrawLine(SCREEN_XSIZE/2, SCREEN_YSIZE/2, SCREEN_XSIZE/2, 20);
-
-    GUI_SetPenSize(3);
-    GUI_SetColor(GUI_BLUE);
-    GUI_DrawLine(SCREEN_XSIZE/2, SCREEN_YSIZE/2, SCREEN_XSIZE/2, 30);
-
-    GUI_SetPenSize(3);
-    GUI_SetColor(GUI_GREEN);
-    GUI_DrawLine(SCREEN_XSIZE/2, SCREEN_YSIZE/2, SCREEN_XSIZE/2, 40);*/
 }
 
 static void DrawLine(void)
@@ -145,8 +133,8 @@ static void DrawLine(void)
     GUI_SetPenSize(3);
     GUI_SetColor(GUI_GREEN);
     r = SCREEN_YSIZE/2 - 40;
-    x = SCREEN_XSIZE/2 + (int)(r * SinTable[clock_hour * 5 + clock_minute/12]);
-    y = SCREEN_YSIZE/2 - (int)(r * SinTable[((clock_hour * 5 + clock_minute/12 + 15) % 60)]);			
+    x = SCREEN_XSIZE/2 + (int)(r * SinTable[(clock_hour % 12) * 5 + clock_minute/12]);
+    y = SCREEN_YSIZE/2 - (int)(r * SinTable[(((clock_hour % 12) * 5 + clock_minute/12 + 15) % 60)]);			
     GUI_DrawLine(SCREEN_XSIZE/2, SCREEN_YSIZE/2, x, y);
 
     memset(num_display, 0, 12);

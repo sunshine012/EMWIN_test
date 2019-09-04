@@ -3,8 +3,8 @@
   <Header>
     <Name>PE_Test</Name>
     <SavedBy>che</SavedBy>
-    <ModificationStamp>141</ModificationStamp>
-    <Date>2019-09-02</Date>
+    <ModificationStamp>142</ModificationStamp>
+    <Date>2019-09-04</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.9.2.RT6_b1446-0504</PEversion>
   </Header>
@@ -29,7 +29,7 @@
     <UseExistingModules>true</UseExistingModules>
     <RenamePeripheries>false</RenamePeripheries>
     <Autodependency>true</Autodependency>
-    <ProjectCompNumb>127</ProjectCompNumb>
+    <ProjectCompNumb>131</ProjectCompNumb>
     <DelUnusedPreviouslyGenFiles>true</DelUnusedPreviouslyGenFiles>
     <GeneratedCodeFrozen>false</GeneratedCodeFrozen>
     <AssignInitComponentNameToPrph>true</AssignInitComponentNameToPrph>
@@ -49154,7 +49154,7 @@
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
         <Index>0</Index>
-        <Expanded>false</Expanded>
+        <Expanded>true</Expanded>
       </ItemState>
       <ItemState>
         <ItemSymbol>Group0ArbitrationFeatureGroup</ItemSymbol>
@@ -49216,7 +49216,7 @@
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
         <Index>0</Index>
-        <Expanded>false</Expanded>
+        <Expanded>true</Expanded>
       </ItemState>
       <ItemState>
         <ItemSymbol>AutoSetChannelPriority</ItemSymbol>
@@ -49228,7 +49228,7 @@
         <ItemSymbol>StaticChannelList</ItemSymbol>
         <ReadOnly>true</ReadOnly>
         <ListItemCount>1</ListItemCount>
-        <UserReadOnly>false</UserReadOnly>
+        <UserReadOnly>true</UserReadOnly>
         <Expanded>true</Expanded>
       </ItemState>
       <ItemState>
