@@ -18,7 +18,7 @@
         <Line>PE_Const</Line>
         <Line>IO_Map</Line>
       </GenSharedModules>
-      <ShrdHeaderAge0>1327661409</ShrdHeaderAge0>
+      <ShrdHeaderAge0>1328123221</ShrdHeaderAge0>
       <ShrdCodeAge0>-1</ShrdCodeAge0>
       <ShrdAsemblAge0>-1</ShrdAsemblAge0>
       <ShrdHeaderAge1>1317571123</ShrdHeaderAge1>
@@ -50,9 +50,9 @@
         <Line>Generated_Code\Vectors.c</Line>
       </GenExtraFiles>
       <GenExtraFileSrcDir11>lib\doxygen\</GenExtraFileSrcDir11>
-      <XtraAge13>1327661409</XtraAge13>
-      <XtraAge14>1327661409</XtraAge14>
-      <XtraAge16>1327661409</XtraAge16>
+      <XtraAge13>1328123221</XtraAge13>
+      <XtraAge14>1328123221</XtraAge14>
+      <XtraAge16>1328123221</XtraAge16>
       <GenExtraFileType16>4</GenExtraFileType16>
       <GenExtraFileType15>4</GenExtraFileType15>
       <GenExtraFileType14>4</GenExtraFileType14>
@@ -158,7 +158,7 @@
     </GenFiles>
     <SignalListFile>Documentation\PE_Test_SIGNALS.txt</SignalListFile>
     <DestinationCompiler>GNUC</DestinationCompiler>
-    <ProjectModificationStamp>142</ProjectModificationStamp>
+    <ProjectModificationStamp>143</ProjectModificationStamp>
   </Options>
   <CpuID_2>
     <Generated>false</Generated>
@@ -166,8 +166,8 @@
     <GenComponentVersion>01.028</GenComponentVersion>
     <GenDriverVersion>01.04</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1327661409</HeaderAge>
-    <CodeAge>1327661941</CodeAge>
+    <HeaderAge>1328123221</HeaderAge>
+    <CodeAge>1328123221</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>11</GenNumMethods>
     <SetClockConfiguration>false</SetClockConfiguration>
@@ -281,8 +281,8 @@
     <GenComponentVersion>01.028</GenComponentVersion>
     <GenDriverVersion>01.04</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1327661409</HeaderAge>
-    <CodeAge>1327661941</CodeAge>
+    <HeaderAge>1328123221</HeaderAge>
+    <CodeAge>1328123221</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>11</GenNumMethods>
     <SetClockConfiguration>false</SetClockConfiguration>
