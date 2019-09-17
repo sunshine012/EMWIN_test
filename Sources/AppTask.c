@@ -11,9 +11,6 @@
 #include "GPIO2.h"
 #include "Global_data.h"
 #include "AppTask.h"
-#include "SysDisplay.h"
-#include "SysFont.h"
-#include "DatFont8x16.h"
 #include "GUI.h"
 
 #include "pictures.h"

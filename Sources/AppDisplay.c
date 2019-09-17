@@ -19,6 +19,7 @@
 */
 
 // USER START (Optionally insert additional includes)
+#include <string.h>
 #include "AppDisplay.h"
 #include "PE_Types.h"
 #include "Global_data.h"
