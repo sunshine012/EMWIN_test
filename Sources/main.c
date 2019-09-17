@@ -68,7 +68,6 @@ int main(void)
   (void)GPIO1_Init(NULL);
   (void)GPIO2_Init(NULL);
   pDMA_device = DMACH1_Init(NULL);
-  //DrvFlexBusInit();
 
   AppStartRTOS();
   

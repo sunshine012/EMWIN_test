@@ -19,6 +19,11 @@ void SerialSendData(const void* string)
 	}
 }
 
+void out_char (char ch)
+{
+	AS1_SendChar(ch);
+}
+
 uint8 SerialCheckData(AS1_TComData* dest)
 {
 	uint8 status = 0;

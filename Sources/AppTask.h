@@ -15,7 +15,6 @@
 #include "DrvSsp.h"
 #include "DrvLcd_Color320x240.h"
 #include "DrvLcdController_MK70.h"
-#include "DrvFlexBus.h"
 
 #include "FreeRTOS.h"
 #include "task.h"

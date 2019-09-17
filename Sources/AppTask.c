@@ -15,6 +15,8 @@
 
 #include "pictures.h"
 #include "AppDisplay.h"
+#include "psptypes.h"
+#include "derivative.h"
 
 void DrvWatchDogDisable(void);
 
@@ -184,7 +186,10 @@ void LCDTask( void *pvParameters )
 #endif
 	while(1)
 	{
-		GUI_X_Delay(20);
+		//GUI_X_Delay(20);
+		GUI_X_Delay(100);
+		printf("Test\n");
+		printf("TotalTimeSeconds = %d\n", TotalTimeSeconds);
 		if(DMACH1_GetTransferCompleteStatus(pDMA_device))
 		{
 			WM_InvalidateRect(hDlg, pRect);
