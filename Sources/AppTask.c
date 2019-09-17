@@ -34,24 +34,6 @@ void DrvWatchDogDisable(void);
 	static void LCDTask( void *pvParameters );
 #endif
 
-#ifndef USE_EMWIN
-static void display_status(int line, char *title, int status)
-{
-   SysDisplayClearLine(line, 16);
-   SysDisplaySetCursorAt(line, 0);
-   SysDisplayRamString(title, DISPLAY_NORMAL);
-   SysDisplaySetCursorAt(line, 0);
-   if (status) {
-	   DrvLcdSetTextColor(COLOR_GREEN);
-	   SysDisplayRamString("OK", DISPLAY_RIGHT);
-   } else {
-	   DrvLcdSetTextColor(COLOR_RED);
-	   SysDisplayRamString("!!", DISPLAY_RIGHT);
-   }
-   DrvLcdSetTextColor(COLOR_WHITE);
-}
-#endif
-
 void AppStartRTOS(void)
 {
 	UINT32 x;
@@ -60,14 +42,6 @@ void AppStartRTOS(void)
 	DrvSspInit(0, 1000000);
 #else
 	(void)SM1_Init(NULL);
-#endif
-
-#ifndef USE_EMWIN
-	DrvLcdInit( LCD_148_000012, 0, (void*)0x80000000, NULL );
-	SysFontHeaderInit(Font8x16, FONT8X16_BYTES_PER_CHAR, FONT8X16_CHAR_COUNT, FONT8X16_CHAR_OFFSET, FONT8X16_HEIGHT, FONT8X16_BLOCK, FONT8X16_UNDERLINE, FONT8X16_WIDTH);
-	SysDisplayClear(NULL);
-	DrvLcdSetWriteMode(DRV_LCD_LOGICAL_WRITE_DATA);
-	display_status(0, "FIRMWARE", 1);
 #endif
 
 	(void)TU1_Init(NULL);
