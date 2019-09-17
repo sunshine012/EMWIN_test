@@ -20,6 +20,7 @@
 #include "AppDisplay.h"
 
 void DrvWatchDogDisable(void);
+
 #ifdef	USE_FREERTOS
 	EventGroupHandle_t xKeyEventGroup;
 	TaskHandle_t	StartTask_Handle;
@@ -31,9 +32,6 @@ void DrvWatchDogDisable(void);
 	static void KeyTask( void *pvParameters );
 	static void SerialTask( void *pvParameters );
 	static void LCDTask( void *pvParameters );
-#if (configAPPLICATION_ALLOCATED_HEAP == 1)
-	uint8_t ucHeap [configTOTAL_HEAP_SIZE] __attribute__ (( section("._D4DRamData_") ));
-#endif
 #endif
 
 #ifndef USE_EMWIN
