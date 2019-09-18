@@ -17,11 +17,11 @@
 #define SERIAL_DEBUG
 
 #ifdef SERIAL_DEBUG
-#define printf			printf_kinetis
-#define printf_ok		DBG_GREEN
-#define printf_error	DBG_RED
-#define printf_info		DBG_YELLOW
-#define printf_isr		DBG_MAGENTA
+#define PRINTF			printf_kinetis
+#define PRINTF_OK		DBG_GREEN
+#define PRINTF_ERROR	DBG_RED
+#define PRINTF_INFO		DBG_YELLOW
+#define PRINTF_ISR		DBG_MAGENTA
 
 
 #define DBG_RED(...)    printf("%c[%d;%dm", 0x1B, ATTR_BOLD, FG_RED);           \
@@ -68,4 +68,12 @@
 #define BG_MAGENTA      45
 #define BG_CYAN         46
 #define BG_WHITE        47
+
+#else
+#define PRINTF
+#define PRINTF_OK
+#define PRINTF_ERROR
+#define PRINTF_INFO
+#define PRINTF_ISR
+
 #endif

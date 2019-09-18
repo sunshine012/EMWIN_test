@@ -187,9 +187,17 @@ void LCDTask( void *pvParameters )
 	while(1)
 	{
 		//GUI_X_Delay(20);
-		GUI_X_Delay(100);
-		printf("Test\n");
-		printf("TotalTimeSeconds = %d\n", TotalTimeSeconds);
+		GUI_X_Delay(20);
+		PRINTF("Test\n");
+		PRINTF("TotalTimeSeconds = %d\n", TotalTimeSeconds);
+		GUI_X_Delay(10);
+		PRINTF_OK("It is OK\n");
+		GUI_X_Delay(10);
+		PRINTF_ERROR("It is Error\n");
+		GUI_X_Delay(10);
+		PRINTF_INFO("It is Info\n");
+		GUI_X_Delay(10);
+		PRINTF_ISR("It is ISR\n");
 		if(DMACH1_GetTransferCompleteStatus(pDMA_device))
 		{
 			WM_InvalidateRect(hDlg, pRect);
