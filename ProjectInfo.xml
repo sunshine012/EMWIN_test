@@ -50,18 +50,25 @@
       <Path>E:\Workspace\MK70_Try\PE_Test\Generated_Code\</Path>
       <Path>E:\Workspace\MK70_Try\PE_Test\Project_Settings\Startup_Code\</Path>
       <Path>E:\Workspace\MK70_Try\PE_Test\Sources\</Path>
+      <Path>E:\Workspace\MK70_Try\PE_Test\Sources\app\</Path>
+      <Path>E:\Workspace\MK70_Try\PE_Test\Sources\bsp\</Path>
+      <Path>E:\Workspace\MK70_Try\PE_Test\Sources\classes\hid\</Path>
+      <Path>E:\Workspace\MK70_Try\PE_Test\Sources\classes\hub\</Path>
+      <Path>E:\Workspace\MK70_Try\PE_Test\Sources\classes\</Path>
+      <Path>E:\Workspace\MK70_Try\PE_Test\Sources\driver\ehci\</Path>
+      <Path>E:\Workspace\MK70_Try\PE_Test\Sources\driver\khci\</Path>
+      <Path>E:\Workspace\MK70_Try\PE_Test\Sources\driver\</Path>
+      <Path>E:\Workspace\MK70_Try\PE_Test\Sources\host_common\</Path>
       <Path>E:\Workspace\MK70_Try\PE_Test\emwin_548\emwin_config\</Path>
     </SourceCodePaths>
   </PATHS>
   <FILES>
     <GeneratedCs>
-      <PathName>E:\Workspace\MK70_Try\PE_Test\Data\DatFont8x16.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Data\Doraemon.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Data\bird.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Data\pictures.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Data\road.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Data\tree.c</PathName>
-      <PathName>E:\Workspace\MK70_Try\PE_Test\Drivers\DrvFlexBus.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Drivers\DrvIOPort.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Drivers\DrvLcdController_MK70.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Drivers\DrvLcd_Color320x240.c</PathName>
@@ -89,7 +96,6 @@
       <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\PE_LDD.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\SM1.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\TU1.c</PathName>
-      <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\USB1.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\Vectors.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Project_Settings\Startup_Code\__arm_end.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Project_Settings\Startup_Code\__arm_start.c</PathName>
@@ -98,8 +104,39 @@
       <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\Appserial.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\Events.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\Global_data.c</PathName>
-      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\SysDisplay.c</PathName>
-      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\SysFont.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\app\PIT1_kinetis.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\app\hidmouse.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\app\poll.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\app\printf.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\app\sci.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\bsp\P3.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\bsp\vectors.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\classes\hid\usb_host_hid.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\classes\hub\usb_host_hub.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\classes\hub\usb_host_hub_sm.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\classes\usb_classes.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\driver\ehci\ehci_bw.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\driver\ehci\ehci_cncl.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\driver\ehci\ehci_intr.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\driver\ehci\ehci_iso.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\driver\ehci\ehci_main.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\driver\ehci\ehci_shut.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\driver\ehci\ehci_utl.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\driver\khci\khci_kinetis.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\driver\mem_util.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\driver\usbevent.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\driver\usbmsgq.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\driver\usbsem.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\host_common\host_ch9.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\host_common\host_close.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\host_common\host_cnl.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\host_common\host_common.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\host_common\host_dev_list.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\host_common\host_driver.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\host_common\host_main.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\host_common\host_rcv.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\host_common\host_shut.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\host_common\host_snd.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\key.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\main.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\emwin_548\emwin_config\GUIConf.c</PathName>
@@ -107,13 +144,11 @@
       <PathName>E:\Workspace\MK70_Try\PE_Test\emwin_548\emwin_config\LCDConf.c</PathName>
     </GeneratedCs>
     <GeneratedHs>
-      <PathName>E:\Workspace\MK70_Try\PE_Test\Data\DatFont8x16.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Data\Doraemon.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Data\bird.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Data\pictures.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Data\road.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Data\tree.h</PathName>
-      <PathName>E:\Workspace\MK70_Try\PE_Test\Drivers\DrvFlexBus.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Drivers\DrvIOPort.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Drivers\DrvLcdController_MK70.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Drivers\DrvLcd_Color320x240.h</PathName>
@@ -156,16 +191,49 @@
       <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\PE_Types.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\SM1.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\TU1.h</PathName>
-      <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\USB1.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\app\hidmouse.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\app\poll.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\app\user_config.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\classes\hid\usb_host_hid.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\classes\hub\usb_host_hub.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\classes\hub\usb_host_hub_sm.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\classes\usb_classes.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\derivative.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\ehci\ehci.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\ehci\ehci_bw.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\ehci\ehci_cache.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\ehci\ehci_cncl.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\ehci\ehci_host.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\ehci\ehci_intr.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\ehci\ehci_iso.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\ehci\ehci_main.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\ehci\ehci_shut.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\ehci\ehci_usbprv_host.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\ehci\ehci_utl.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\khci\khci.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\usbevent.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\usbmsgq.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\usbprv.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\usbsem.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\host_common\host_ch9.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\host_common\host_close.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\host_common\host_cnl.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\host_common\host_common.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\host_common\host_dev_list.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\host_common\host_driver.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\host_common\host_main.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\host_common\host_rcv.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\host_common\host_shut.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\host_common\host_snd.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\host_common\hostapi.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Project_Settings\Startup_Code\runtime_configuration.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\AppDisplay.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\AppTask.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\Appserial.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\Events.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\Global_data.h</PathName>
-      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\SysDisplay.h</PathName>
-      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\SysFont.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\key.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Sources\psptypes.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.7\MCU\ProcessorExpert\lib\Kinetis\iofiles\MK70F15.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.7\MCU\ProcessorExpert\lib\Kinetis\pdd\inc\ADC_PDD.h</PathName>
       <PathName>C:\Freescale\CW MCU v10.7\MCU\ProcessorExpert\lib\Kinetis\pdd\inc\CAN_PDD.h</PathName>
