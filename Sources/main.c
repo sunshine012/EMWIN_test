@@ -41,6 +41,7 @@
 #include "SM1.h"
 #include "DMACH1.h"
 #include "DMA1.h"
+#include "Bit3.h"
 /* Including shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
@@ -50,6 +51,7 @@
 /* User includes (#include below this line is not maintained by Processor Expert) */
 #include "Global_data.h"
 #include "AppTask.h"
+#include "DrvIOPort.h"
 
 /*lint -save  -e970 Disable MISRA rule (6.3) checking. */
 int main(void)
@@ -65,9 +67,9 @@ int main(void)
 
   /* Write your code here */
   /* For example: for(;;) { } */
-  (void)GPIO1_Init(NULL);
-  (void)GPIO2_Init(NULL);
-  pDMA_device = DMACH1_Init(NULL);
+	(void)GPIO1_Init(NULL);
+	(void)GPIO2_Init(NULL);
+	pDMA_device = DMACH1_Init(NULL);
 
   AppStartRTOS();
   

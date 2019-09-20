@@ -60,6 +60,10 @@ typedef enum {
 #define IO_PORT_PIN_IO_GPIO         IO_PORT_PIN_IO_FUNCTION1
 #define IO_PORT_PIN_IO_ANALOG       IO_PORT_PIN_IO_FUNCTION0
 
+#define USB_EN_IO_PORT        PTD_BASE_PTR //! USB enable port register
+#define USB_EN_IO_PAR         PORTD_BASE_PTR //! USB enable special function register
+#define USB_EN_IO_BIT         8        //!< USB enable port pin bit
+
 typedef enum {
 	IO_PORTA = 0,
 	IO_PORTB,

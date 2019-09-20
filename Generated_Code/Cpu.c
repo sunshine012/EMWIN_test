@@ -7,7 +7,7 @@
 **     Version     : Component 01.028, Driver 01.04, CPU db: 3.00.000
 **     Datasheet   : K70P256M150SF3RM, Rev. 2, Dec 2011
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2019-09-02, 16:27, # CodeGen: 159
+**     Date/Time   : 2019-09-20, 10:38, # CodeGen: 175
 **     Abstract    :
 **
 **     Settings    :
@@ -72,6 +72,7 @@
 #include "SM1.h"
 #include "DMACH1.h"
 #include "DMA1.h"
+#include "Bit3.h"
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
@@ -2427,10 +2428,9 @@ void PE_low_level_init(void)
                SIM_SCGC3_LCDC_MASK |
                SIM_SCGC3_DDR_MASK
               ));
-  /* SIM_SCGC4: LLWU=1,VREF=1,CMP=0,USBFS=0,UART3=0,UART2=0,UART1=0,UART0=0,IIC1=0,IIC0=0,CMT=0,EWM=0 */
+  /* SIM_SCGC4: LLWU=1,VREF=1,CMP=0,USBFS=1,UART3=0,UART2=0,UART1=0,UART0=0,IIC1=0,IIC0=0,CMT=0,EWM=0 */
   SIM_SCGC4 = (uint32_t)((SIM_SCGC4 & (uint32_t)~(uint32_t)(
                SIM_SCGC4_CMP_MASK |
-               SIM_SCGC4_USBFS_MASK |
                SIM_SCGC4_UART3_MASK |
                SIM_SCGC4_UART2_MASK |
                SIM_SCGC4_UART1_MASK |
@@ -2441,7 +2441,8 @@ void PE_low_level_init(void)
                SIM_SCGC4_EWM_MASK
               )) | (uint32_t)(
                SIM_SCGC4_LLWU_MASK |
-               SIM_SCGC4_VREF_MASK
+               SIM_SCGC4_VREF_MASK |
+               SIM_SCGC4_USBFS_MASK
               ));
   /* SIM_SCGC5: PORTF=1,PORTE=1,PORTD=1,PORTC=1,PORTB=1,PORTA=1,TSI=0,REGFILE=0,LPTIMER=0 */
   SIM_SCGC5 = (uint32_t)((SIM_SCGC5 & (uint32_t)~(uint32_t)(
@@ -2456,14 +2457,13 @@ void PE_low_level_init(void)
                SIM_SCGC5_PORTB_MASK |
                SIM_SCGC5_PORTA_MASK
               ));
-  /* SIM_SCGC6: RTC=0,ADC2=0,ADC0=0,FTM1=0,FTM0=0,PIT=0,PDB=0,USBDCD=0,USBHS=0,CRC=0,SAI0=0,DSPI1=1,DSPI0=1,FLEXCAN0=0,DMAMUX1=0,DMAMUX0=0 */
+  /* SIM_SCGC6: RTC=0,ADC2=0,ADC0=0,FTM1=0,FTM0=0,PIT=1,PDB=0,USBDCD=0,USBHS=0,CRC=0,SAI0=0,DSPI1=1,DSPI0=1,FLEXCAN0=0,DMAMUX1=0,DMAMUX0=0 */
   SIM_SCGC6 = (uint32_t)((SIM_SCGC6 & (uint32_t)~(uint32_t)(
                SIM_SCGC6_RTC_MASK |
                SIM_SCGC6_ADC2_MASK |
                SIM_SCGC6_ADC0_MASK |
                SIM_SCGC6_FTM1_MASK |
                SIM_SCGC6_FTM0_MASK |
-               SIM_SCGC6_PIT_MASK |
                SIM_SCGC6_PDB_MASK |
                SIM_SCGC6_USBDCD_MASK |
                SIM_SCGC6_USBHS_MASK |
@@ -2473,6 +2473,7 @@ void PE_low_level_init(void)
                SIM_SCGC6_DMAMUX1_MASK |
                SIM_SCGC6_DMAMUX0_MASK
               )) | (uint32_t)(
+               SIM_SCGC6_PIT_MASK |
                SIM_SCGC6_DSPI1_MASK |
                SIM_SCGC6_DSPI0_MASK
               ));
@@ -2522,6 +2523,8 @@ void PE_low_level_init(void)
   /* ### BitIO_LDD "Bit2" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
   (void)Bit2_Init(NULL);
   /* ### LCDC_LDD "LCDC1" init code ... */
+  /* ### BitIO_LDD "Bit3" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)Bit3_Init(NULL);
   /* Enable interrupts of the given priority level */
   Cpu_SetBASEPRI(0U);
 }

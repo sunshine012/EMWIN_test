@@ -16,9 +16,11 @@
 #include "pictures.h"
 #include "AppDisplay.h"
 #include "psptypes.h"
-#include "derivative.h"
+//#include "derivative.h"
 
 void DrvWatchDogDisable(void);
+void USBClockInit(void);
+
 
 #ifdef	USE_FREERTOS
 	EventGroupHandle_t xKeyEventGroup;
@@ -45,6 +47,7 @@ void AppStartRTOS(void)
 
 	(void)TU1_Init(NULL);
 	DrvWatchDogDisable();
+	USBClockInit();
 
 #ifdef	USE_FREERTOS
 	xKeyEventGroup = xEventGroupCreate();
@@ -188,7 +191,7 @@ void LCDTask( void *pvParameters )
 	{
 		//GUI_X_Delay(20);
 		GUI_X_Delay(20);
-		printf("Test\n");
+		/*printf("Test\n");
 		printf("TotalTimeSeconds = %d\n", TotalTimeSeconds);
 		GUI_X_Delay(10);
 		printf_ok("It is OK\n");
@@ -197,7 +200,7 @@ void LCDTask( void *pvParameters )
 		GUI_X_Delay(10);
 		printf_info("It is Info\n");
 		GUI_X_Delay(10);
-		printf_isr("It is ISR\n");
+		printf_isr("It is ISR\n");*/
 		if(DMACH1_GetTransferCompleteStatus(pDMA_device))
 		{
 			WM_InvalidateRect(hDlg, pRect);
@@ -243,3 +246,30 @@ void DrvWatchDogDisable(void)
                                        //needs to be at least 256 bus clock cycles
    	while(delay--);                   //before watchdog registers can be modified again
 }  
+
+void USBClockInit(void)
+{
+	/* SIM_SOPT2: USBFSRC=2,USBF_CLKSEL=1 */
+	SIM_SOPT2 = (UINT32)((SIM_SOPT2 & (UINT32)~(UINT32)(
+	       SIM_SOPT2_USBFSRC(0x01)
+	      )) | (UINT32)(
+	       SIM_SOPT2_USBFSRC(0x02) |
+	       SIM_SOPT2_USBF_CLKSEL_MASK
+	      ));                      /* Clock source=Divided Pll1 clock */
+
+	/* SIM_CLKDIV2: USBFSDIV=4,USBFSFRAC=1 */
+	SIM_CLKDIV2 = (uint32_t)((SIM_CLKDIV2 & (uint32_t)~(uint32_t)(
+				   SIM_CLKDIV2_USBFSDIV(0x03)
+				  )) | (uint32_t)(
+				   SIM_CLKDIV2_USBFSDIV(0x04) |
+				   SIM_CLKDIV2_USBFSFRAC_MASK
+				  ));					 /* Div=5 - Mult=2	*/
+	
+	/* Enable module clock */
+	/* SIM_SCGC4: USBFS=1 */
+	SIM_SCGC4 |= SIM_SCGC4_USBFS_MASK;	  
+
+	/* Enable USB voltage regulator */
+	/* SIM_SOPT1: ??=1 */
+	SIM_SOPT1 |= 0x80U; 				 /* Enable USB voltage regulator */
+}

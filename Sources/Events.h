@@ -45,6 +45,7 @@
 #include "SM1.h"
 #include "DMACH1.h"
 #include "DMA1.h"
+#include "Bit3.h"
 
 #ifdef __cplusplus
 extern "C" {

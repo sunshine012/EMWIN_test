@@ -77,15 +77,6 @@ void TU1_OnCounterRestart(LDD_TUserData *UserDataPtr)
 		RXTimerCounter--;
 
 	TotalTimeSeconds++;
-	/*TimeCounter++;
-	if(TimeCounter == 20 && clockstart)
-	{
-		TimeCounter = 0;
-		TotalTimeSeconds++;
-#ifdef USE_FREERTOS
-		xTaskResumeFromISR(LCDTask_Handle);
-#endif		
-	}*/
 	OS_TimeMS++;
 }
 

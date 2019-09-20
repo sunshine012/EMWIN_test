@@ -47,6 +47,7 @@ extern uint32  TotalTimeSeconds;
 
 extern LDD_TDeviceData *pDMA_device;
 
+
 extern volatile GUI_TIMER_TIME OS_TimeMS;
 
 /***** Function prototypes *****/
