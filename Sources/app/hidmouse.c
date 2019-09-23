@@ -126,28 +126,11 @@ HID_COMMAND         main_hid_com;
  *     Execution starts here
  *
  *END*--------------------------------------------------------------------*/
-#ifdef __GNUC__
-int main(void)
-#else
-void main(void) 
-#endif
+
+void host_main(void) 
 {  
 	static USB_STATUS status = USB_OK;
 
-	/* Initialize the current platform. Call for the _bsp_platform_init which is specific to each processor family */
-	_bsp_platform_init();
-#ifdef MCU_MK70F12
-	sci2_init();
-	
-	// clear terminal
-	printf("\f");
-	
-#if HIGH_SPEED_DEVICE
-	ULPI_Init();
-#endif
-#else
-	sci1_init();
-#endif
 	// clear terminal
 	printf("\f");
 
@@ -194,7 +177,7 @@ void main(void)
   {
 		Mouse_Task(main_buffer,&main_hid_com);     
 		Poll();
-		__RESET_WATCHDOG(); /* feeds the dog */
+		//__RESET_WATCHDOG(); /* feeds the dog */
 	} /* loop forever */
 	/* please make sure that you never leave main */
 #ifdef __GNUC__

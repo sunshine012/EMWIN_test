@@ -16,7 +16,8 @@
 #include "pictures.h"
 #include "AppDisplay.h"
 #include "psptypes.h"
-//#include "derivative.h"
+#include "derivative.h"
+#include "hidmouse.h"
 
 void DrvWatchDogDisable(void);
 void USBClockInit(void);
@@ -55,7 +56,8 @@ void AppStartRTOS(void)
 	xTaskCreate( StartTask,  "StartTask",  configMINIMAL_STACK_SIZE, NULL, START_TASK_PRIORITY,  &StartTask_Handle );
 	vTaskStartScheduler();
 #else
-	LCDTask(NULL);
+	//LCDTask(NULL);
+	host_main();
 #endif
 }
 

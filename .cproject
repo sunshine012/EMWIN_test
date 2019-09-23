@@ -157,6 +157,24 @@
 								<option id="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.optimization.level.532286281" name="Optimization level" superClass="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.optimization.level" value="org.eclipse.cdt.cross.arm.gnu.base.option.optimization.level.none" valueType="enumerated"/>
 								<option id="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.misc.enable.lstfilename.181475809" name="Enable Assembler Listing" superClass="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.misc.enable.lstfilename" value="false" valueType="boolean"/>
 								<option id="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.include.paths.1851428960" name="Include paths (-I)" superClass="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Headers&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Headers/app&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Headers/classes&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Headers/classes/hid&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Headers/classes/hub&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Headers/driver&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Headers/driver/ehci&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Headers/driver/khci&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Headers/host_common&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Sources/app&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Sources/bsp&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Sources/classes&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Sources/classes/hid&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Sources/classes/hub&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Sources/driver&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Sources/driver/ehci&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Sources/driver/khci&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Sources/host_common&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/FreeRTOS/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Data&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Drivers&quot;"/>
@@ -292,7 +310,7 @@
 					</folderInfo>
 					<fileInfo id="org.eclipse.cdt.cross.arm.gnu.sourcery.windows.elf.debug.254887628..settings/com.freescale.processorexpert.core.prefs" name="com.freescale.processorexpert.core.prefs" rcbsApplicability="disable" resourcePath=".settings/com.freescale.processorexpert.core.prefs" toolsToInvoke=""/>
 					<sourceEntries>
-						<entry excluding="Sources/host_common|Sources/driver|Sources/classes|Sources/bsp|Sources/app|Headers|.settings/com.freescale.processorexpert.core.prefs|emwin_524/" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name=""/>
+						<entry excluding="Sources/app/sci.c|Sources/bsp/vectors.c|.settings/com.freescale.processorexpert.core.prefs|emwin_524/" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
