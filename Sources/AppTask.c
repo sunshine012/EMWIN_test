@@ -51,7 +51,7 @@ void AppStartRTOS(void)
 	(void)TU1_Init(NULL);
 	DrvWatchDogDisable();
 	
-#ifdef PE_USB
+#if PE_USB
 	pUSB_device = USB1_Init(NULL);
 	USB1_Enable(pUSB_device);
 #else

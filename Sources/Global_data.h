@@ -22,7 +22,7 @@
 
 #define KEY_SCAN_PERIOD_MS			16
 
-//#define PE_USB
+#define PE_USB	0
 
 /***** Macro's *****/
 

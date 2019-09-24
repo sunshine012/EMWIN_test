@@ -68,6 +68,7 @@
   #include "Bit3.h"
   #include "USB1.h"
   #include "Events.h"
+  #include "Global_data.h"
 
 
   /* ISR prototype */
@@ -177,7 +178,11 @@
     (tIsrFunc)&Cpu_ivINT_PIT2,         /* 0x56  0x00000158   -   ivINT_PIT2                     unused by PE */
     (tIsrFunc)&Cpu_ivINT_PIT3,         /* 0x57  0x0000015C   -   ivINT_PIT3                     unused by PE */
     (tIsrFunc)&Cpu_ivINT_PDB0,         /* 0x58  0x00000160   -   ivINT_PDB0                     unused by PE */
+#if PE_USB   
+    (tIsrFunc)&USB1_USB_Interrupt,     /* 0x59  0x00000164   8   ivINT_USB0                     used by PE */
+#else
     (tIsrFunc)&USB_ISR,     /* 0x59  0x00000164   8   ivINT_USB0                     used by PE */
+#endif
     (tIsrFunc)&Cpu_ivINT_USBDCD,       /* 0x5A  0x00000168   -   ivINT_USBDCD                   unused by PE */
     (tIsrFunc)&Cpu_ivINT_ENET_1588_Timer, /* 0x5B  0x0000016C   -   ivINT_ENET_1588_Timer          unused by PE */
     (tIsrFunc)&Cpu_ivINT_ENET_Transmit, /* 0x5C  0x00000170   -   ivINT_ENET_Transmit            unused by PE */
