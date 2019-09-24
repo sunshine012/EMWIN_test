@@ -1098,8 +1098,8 @@ void _usb_host_process_reset_recovery_done
 
 
 // todo: remove this in HIGH SPEED mode(needed by IAR)
-void USB_ISR(){
-}
+//void USB_ISR(){
+//}
 
 /*FUNCTION*-------------------------------------------------------------
  *
@@ -1152,7 +1152,7 @@ void USBHS_ISR_HOST(void)
 		} /* Endif */
 
 		if (status & EHCI_STS_HOST_SYS_ERROR) {
-			printf("EHCI_STS_HOST_SYS_ERROR\n");
+			myprintf("EHCI_STS_HOST_SYS_ERROR\n");
 			USBHS_USBSTS = status;
 			/* Host system error. Controller halted. Inform the upper layers */
 			_usb_host_call_service((pointer)usb_host_ptr, USB_SERVICE_SYSTEM_ERROR, 0);
@@ -1160,30 +1160,30 @@ void USBHS_ISR_HOST(void)
 
 		if (status & EHCI_STS_FRAME_LIST_ROLLOVER) {
 			/* Process frame list rollover */
-			printf("EHCI_STS_FRAME_LIST_ROLLOVER\n");
+			myprintf("EHCI_STS_FRAME_LIST_ROLLOVER\n");
 			USBHS_USBSTS = status;
 		} /* Endif */
 
 		if (status & EHCI_STS_RECLAIMATION) {
 			/* Process reclaimation */
-			printf("EHCI_STS_RECLAIMATION\n");
+			myprintf("EHCI_STS_RECLAIMATION\n");
 			USBHS_USBSTS = status;
 		} /* Endif */
 
 		if (status & EHCI_STS_NAK) {
-			printf("EHCI_STS_NAK\n");
+			myprintf("EHCI_STS_NAK\n");
 			USBHS_USBSTS = status;
 			_usb_ehci_process_tr_complete((pointer)usb_host_ptr);
 		}
 
 		if (status & EHCI_STS_PORT_CHANGE) {
-			printf("EHCI_STS_PORT_CHANGE\n");
+			myprintf("EHCI_STS_PORT_CHANGE\n");
 			USBHS_USBSTS = status;
 
 			/* Process the port change detect */
 			if (_usb_ehci_process_port_change((pointer)usb_host_ptr)) {
 				/* There was a detach on port 0 so we should return */
-				printf("detach\n");
+				myprintf("detach\n");
 				return;
 			} /* Endif */
 			/* Should return if there was a detach on OTG port */
@@ -1198,7 +1198,7 @@ void USBHS_ISR_HOST(void)
 
 			_usb_ehci_process_tr_complete((pointer)usb_host_ptr);
 #ifdef DEBUG_INFO 
-			printf("TR completed\n");
+			myprintf("TR completed\n");
 #endif
 
 		} /* Endif */
@@ -1286,7 +1286,7 @@ USB_STATUS  _usb_hci_vusb20_init
 	total_mem_ptr = USB_mem_alloc_uncached(total_non_periodic_memory + total_periodic_memory);
 	if (!total_mem_ptr) {
 #ifdef SERIAL_DEBUG
-		printf("error allocating memory\n");
+		myprintf("error allocating memory\n");
 #endif
 		return USBERR_ALLOC;
 	}
@@ -1812,7 +1812,7 @@ static void _usb_ehci_process_qh_list_tr_complete
 			{
 
 #ifdef DEBUG_INFO
-				printf("QTD done Token=%x\n"
+				myprintf("QTD done Token=%x\n"
 						"  Status=%x,PID code=%x,error code=%x,page=%x,IOC=%x,Bytes=%x,Toggle=%x\n",
 						QTD_ptr->TOKEN,
 						((QTD_ptr->TOKEN)&0xFF),
@@ -1941,7 +1941,7 @@ static void _usb_ehci_process_qh_list_tr_complete
 					if (pipe_tr_struct_ptr->CALLBACK != NULL) 
 					{
 #ifdef DEBUG_INFO
-						printf("_usb_ehci_process_qh_list_tr_complete: Callback\n");
+						myprintf("_usb_ehci_process_qh_list_tr_complete: Callback\n");
 #endif
 						pipe_tr_struct_ptr->CALLBACK((pointer)pipe_descr_ptr, 
 								pipe_tr_struct_ptr->CALLBACK_PARAM,
@@ -1975,7 +1975,7 @@ static void _usb_ehci_process_qh_list_tr_complete
 		} /* EndWhile */
 
 #ifdef DEBUG_INFO
-		printf("_usb_ehci_process_qh_list_tr_complete: next active QH\n");
+		myprintf("_usb_ehci_process_qh_list_tr_complete: next active QH\n");
 #endif
 
 		active_list_member_ptr = 
@@ -2038,7 +2038,7 @@ static void _usb_ehci_process_qh_interrupt_tr_complete
 
 
 #ifdef DEBUG_INFO
-			printf("_usb_ehci_process_qh_interrupt_tr_complete: QTD =%x\n"
+			myprintf("_usb_ehci_process_qh_interrupt_tr_complete: QTD =%x\n"
 					"  Status=%x,PID code=%x,error code=%x,page=%x,IOC=%x,Bytes=%x,Toggle=%x\n",
 					QTD_ptr->TOKEN,
 					((QTD_ptr->TOKEN)&0xFF),
@@ -2087,7 +2087,7 @@ static void _usb_ehci_process_qh_interrupt_tr_complete
 						EHCI_QTD_LENGTH_BIT_POS);
 
 #ifdef DEBUG_INFO
-				printf("_usb_ehci_process_qh_interrupt_tr_complete: Requested Bytes = %d\
+				myprintf("_usb_ehci_process_qh_interrupt_tr_complete: Requested Bytes = %d\
 						,Remaining bytes = %d,",total_req_bytes,remaining_bytes);
 #endif
 
@@ -2583,7 +2583,7 @@ static void _usb_ehci_process_sitd_tr_complete
 	{
 
 		if(++counter == 9){
-			printf("tick1\n");
+			myprintf("tick1\n");
 		}
 		SITD_ptr =  (EHCI_SITD_STRUCT_PTR) node_ptr->member;
 
@@ -2630,7 +2630,7 @@ static void _usb_ehci_process_sitd_tr_complete
 						usb_host_ptr->ACTIVE_ISO_SITD_PERIODIC_LIST_TAIL_PTR,
 						node_ptr);*/
 				{
-					printf("tick2\n");
+					myprintf("tick2\n");
 					if(node_ptr->prev != NULL) {
 						node_ptr->prev->next = node_ptr->next;
 						node_ptr->prev->next_active = node_ptr->next_active;
@@ -2649,7 +2649,7 @@ static void _usb_ehci_process_sitd_tr_complete
 					usb_host_ptr->ACTIVE_ISO_SITD_PERIODIC_LIST_TAIL_PTR->next = node_ptr;
 					usb_host_ptr->ACTIVE_ISO_SITD_PERIODIC_LIST_TAIL_PTR->next_active = FALSE;
 
-					printf("tick3\n");
+					myprintf("tick3\n");
 				}
 
 
@@ -2658,9 +2658,9 @@ static void _usb_ehci_process_sitd_tr_complete
 			else
 			{
 				if((uint_32)usb_host_ptr->ACTIVE_ISO_SITD_PERIODIC_LIST_TAIL_PTR->next < 0x1fff0000u){
-					printf("");
+					myprintf("");
 				}
-				printf("else\n");
+				myprintf("else\n");
 				/*save next node */
 				next_node_ptr = node_ptr->next;
 
@@ -2672,7 +2672,7 @@ static void _usb_ehci_process_sitd_tr_complete
 				/*move to next node now */
 				node_ptr = next_node_ptr;                   
 				prev_node_ptr = node_ptr->prev;
-				printf("else end\n");
+				myprintf("else end\n");
 			}
 
 #ifdef  __USB_OTG__ 

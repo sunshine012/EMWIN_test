@@ -509,7 +509,7 @@ void ULPI_Init(){
 #warning "Sometimes, ULPI module doesn't initialize correctly, in debug mode"
 
 #ifdef SERIAL_DEBUG
-	printf("module initialized ok\n");
+	myprintf("module initialized ok\n");
 #endif
 
 	// reset module

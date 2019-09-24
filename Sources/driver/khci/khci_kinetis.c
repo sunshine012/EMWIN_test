@@ -38,6 +38,8 @@
 #include "user_config.h"
 #include "psptypes.h"
 #include "mem_util.h"
+#include "USB_PDD.h"
+
 
 #ifdef USE_POLL
 #include "poll.h"
@@ -600,13 +602,13 @@ USB_STATUS _usb_khci_init
 	}
 
 	_usb_event_init(&khci_event);
-	USB0_ISTAT = 0xff;
+	//USB0_ISTAT = 0xff;
     /* Enable weak pull-downs, usefull for detecting detach */
-    USB0_USBCTRL = USB_USBCTRL_PDE_MASK;
+    //USB0_USBCTRL = USB_USBCTRL_PDE_MASK;
     /* Renove suspend state */
-    USB0_USBCTRL &= ~USB_USBCTRL_SUSP_MASK;
+    //USB0_USBCTRL &= ~USB_USBCTRL_SUSP_MASK;
     
-	USB0_CTL |= USB_CTL_ODDRST_MASK;
+	//USB0_CTL |= USB_CTL_ODDRST_MASK;
 	
 	USB_mem_zero(&endpoint_data, sizeof(endpoint_data));
 	
@@ -614,16 +616,24 @@ USB_STATUS _usb_khci_init
     USB0_BDTPAGE2 = (uint_8)((uint_32)BDT_BASE >> 16);
     USB0_BDTPAGE3 = (uint_8)((uint_32)BDT_BASE >> 24);
 
-    USB0_SOFTHLD = 1;      
+    USB_PDD_SetErrorInterruptMask(USB0_BASE_PTR, 0x00U);   /* Disable all "Error" interrupts */
+    USB_PDD_ClearUsbInterruptFlags(USB0_BASE_PTR, USB_PDD_ALL_INT_FLAGS); /* Clear "Attach" interrupt flag */
+    USB_PDD_SetUsbInterruptMask(USB0_BASE_PTR, USB_PDD_ATTACH_INT); /* Enable "Attach" interrupt */
+
+    USB_PDD_SuspendTransceiver(USB0_BASE_PTR, PDD_DISABLE); /* Enable transceiver */
+    USB_PDD_WriteOtgControlReg(USB0_BASE_PTR, (USB_PDD_ReadOtgControlReg(USB0_BASE_PTR) | (uint_8)0x30)); /* Enable D+- pull-downs. Enable VBUS */
+    USB_PDD_Disable1msInterrupt(USB0_BASE_PTR);            /* Disable "1ms" interrupt */
+    USB_PDD_EnableHost(USB0_BASE_PTR, PDD_ENABLE);         /* Enable host mode */
+    //USB0_SOFTHLD = 1;      
         
 	/* Enable Host Mode */
-	USB0_CTL = USB_CTL_HOSTMODEEN_MASK;
+	//USB0_CTL = USB_CTL_HOSTMODEEN_MASK;
 	
     /* Following is for OTG control instead of internal bus control */
 //    USB0_OTGCTL = USB_OTGCTL_DMLOW_MASK | USB_OTGCTL_DPLOW_MASK | USB_OTGCTL_OTGEN_MASK;    
     
 	/* Enable the ATTACH interrupt */
-	USB0_INTEN = USB_INTEN_ATTACHEN_MASK;
+	//USB0_INTEN = USB_INTEN_ATTACHEN_MASK;
 	
 	_usb_khci_init_int_tr();
 
@@ -1085,7 +1095,7 @@ USB_STATUS _usb_khci_send_setup
 #ifdef OTG_BUILD
 void  USB_ISR_HOST(void)
 #else
-	void  USB_ISR(void)
+void USB_ISR(void)
 #endif
 {
     uchar status;

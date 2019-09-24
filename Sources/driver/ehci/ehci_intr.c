@@ -100,7 +100,7 @@ uint_32 _usb_ehci_add_interrupt_xfer_to_periodic_list
 	);
 
 #ifdef DEBUG_INFO
-	printf("QTD queued Top QTD Token=%x\n"
+	myprintf("QTD queued Top QTD Token=%x\n"
 			"   Status=%x,PID code=%x,error code=%x,page=%x,IOC=%x,Bytes=%x,Toggle=%x\n",
 			first_QTD_ptr->TOKEN,
 			((first_QTD_ptr->TOKEN)&0xFF),
@@ -251,7 +251,7 @@ uint_32 _usb_ehci_add_interrupt_xfer_to_periodic_list
 	} /*else */
 
 #ifdef DEBUG_INFO
-	printf("_usb_ehci_add_interrupt_xfer_to_periodic_list: QH =%x\n"
+	myprintf("_usb_ehci_add_interrupt_xfer_to_periodic_list: QH =%x\n"
 			"  Status=%x,PID code=%x,error code=%x,page=%x,IOC=%x,Bytes=%x,Toggle=%x\n",
 			first_QTD_ptr->TOKEN,
 			((first_QTD_ptr->TOKEN)&0xFF),

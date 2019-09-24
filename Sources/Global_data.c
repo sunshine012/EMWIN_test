@@ -28,5 +28,6 @@ uint16  TimeCounter;
 uint32  TotalTimeSeconds;
 
 LDD_TDeviceData *pDMA_device;
+LDD_TDeviceData *pUSB_device;
 
 

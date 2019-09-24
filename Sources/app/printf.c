@@ -669,7 +669,7 @@ printk (PRINTK_INFO *info, const char *fmt, va_list ap)
 
 /********************************************************************/
 int
-printf_kinetis (const char *fmt, ...)
+myprintf_kinetis (const char *fmt, ...)
 {
     va_list ap;
     int rvalue;
@@ -692,7 +692,7 @@ printf_kinetis (const char *fmt, ...)
 
 /********************************************************************/
 int
-sprintf_kinetis (char *s, const char *fmt, ...)
+smyprintf_kinetis (char *s, const char *fmt, ...)
 {
     va_list ap;
     int rvalue = 0;

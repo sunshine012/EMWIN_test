@@ -85,7 +85,7 @@ extern "C" {
 	void otg_service(_usb_otg_handle, uint_32);
 #endif
 
-void host_main(void); 
+extern void host_main(void); 
 
 void usb_host_hid_recv_callback(_usb_pipe_handle, pointer, uchar_ptr, uint_32,
    uint_32);

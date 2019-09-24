@@ -709,9 +709,9 @@ USB_STATUS _usb_ehci_add_SITD
          space is available in the queue because SITD_ptr was allocated and
          number of nodes available always match the number of SITD_ENTRIES
 		 **********************************************************************/
-		printf("%x\n", (uint_32)usb_host_ptr->ACTIVE_ISO_SITD_PERIODIC_LIST_TAIL_PTR->next);
+		myprintf("%x\n", (uint_32)usb_host_ptr->ACTIVE_ISO_SITD_PERIODIC_LIST_TAIL_PTR->next);
 		if((uint_32)usb_host_ptr->ACTIVE_ISO_SITD_PERIODIC_LIST_TAIL_PTR->next == 0x1FFFE8F8){
-			printf("");
+			myprintf("");
 		}
 		//EHCI_ACTIVE_QUEUE_ADD_NODE(usb_host_ptr->ACTIVE_ISO_SITD_PERIODIC_LIST_TAIL_PTR,(EHCI_SITD_STRUCT_PTR)SITD_ptr);
 
@@ -724,7 +724,7 @@ USB_STATUS _usb_ehci_add_SITD
 
 
 		if((uint_32)usb_host_ptr->ACTIVE_ISO_SITD_PERIODIC_LIST_TAIL_PTR->next < 0x1fff0000U){
-			printf("caught\n");
+			myprintf("caught\n");
 		}
 		/*********************************************************************
          Zero the SITD. Leave everything else expect first 7 int bytes (which are

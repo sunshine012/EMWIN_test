@@ -46,6 +46,7 @@
 #include "DMACH1.h"
 #include "DMA1.h"
 #include "Bit3.h"
+#include "USB1.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -185,6 +186,71 @@ void DMACH1_OnComplete(LDD_TUserData *UserDataPtr);
 */
 /* ===================================================================*/
 void DMACH1_OnError(LDD_TUserData *UserDataPtr);
+
+/*
+** ===================================================================
+**     Event       :  USB1_OnHostDeviceDeattach (module Events)
+**
+**     Component   :  USB1 [USB_LDD]
+*/
+/*!
+**     @brief
+**         Called after the device has been successfully attached (see
+**         OnResetRecovery() event) and the deattach condition is
+**         detected,  OnDeattach() event is enabled and USB module is
+**         enabled. See SetEventMask() and GetEventMask() methods.
+**     @param
+**         UserDataPtr     - User data pointer. This
+**                           pointer is passed as the parameter of Init
+**                           method.
+*/
+/* ===================================================================*/
+void USB1_OnHostDeviceDeattach(LDD_TUserData *UserDataPtr);
+
+/*
+** ===================================================================
+**     Event       :  USB1_OnHostResetRecovery (module Events)
+**
+**     Component   :  USB1 [USB_LDD]
+*/
+/*!
+**     @brief
+**         Called 10 ms later (reset recovery time) after the reset
+**         signaling is stopped, OnResetRecovery() event is enabled and
+**         USB module is enabled. See SetEventMask() and GetEventMask()
+**         methods. As soon as this event is invoked attached device
+**         can be accessed by the SendXX()/RecvXX() methods.
+**     @param
+**         UserDataPtr     - User data pointer. This
+**                           pointer is passed as the parameter of Init
+**                           method.
+**     @param
+**         CurrentSpeed    - Current device speed.
+*/
+/* ===================================================================*/
+void USB1_OnHostResetRecovery(LDD_TUserData *UserDataPtr, LDD_USB_TBusSpeed CurrentSpeed);
+
+/*
+** ===================================================================
+**     Event       :  USB1_OnHostResumeRecovery (module Events)
+**
+**     Component   :  USB1 [USB_LDD]
+*/
+/*!
+**     @brief
+**         Called 10 ms later (resume recovery time) after the resume
+**         signaling is stopped, OnResumeRecovery() event is enabled
+**         and USB module is enabled. See SetEventMask() and
+**         GetEventMask() methods. As soon as this event is invoked
+**         attached device can be accessed by the SendXX()/RecvXX()
+**         methods.
+**     @param
+**         UserDataPtr     - User data pointer. This
+**                           pointer is passed as the parameter of Init
+**                           method.
+*/
+/* ===================================================================*/
+void USB1_OnHostResumeRecovery(LDD_TUserData *UserDataPtr);
 
 /* END Events */
 

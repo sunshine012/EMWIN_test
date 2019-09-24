@@ -12,6 +12,8 @@
 #include "Global_data.h"
 #include "AppTask.h"
 #include "GUI.h"
+#include "USB1.h"
+#include "USB_PDD.h"
 
 #include "pictures.h"
 #include "AppDisplay.h"
@@ -48,15 +50,23 @@ void AppStartRTOS(void)
 
 	(void)TU1_Init(NULL);
 	DrvWatchDogDisable();
+	
+#ifdef PE_USB
+	pUSB_device = USB1_Init(NULL);
+	USB1_Enable(pUSB_device);
+#else
 	USBClockInit();
+#endif
+	
 
 #ifdef	USE_FREERTOS
 	xKeyEventGroup = xEventGroupCreate();
 
 	xTaskCreate( StartTask,  "StartTask",  configMINIMAL_STACK_SIZE, NULL, START_TASK_PRIORITY,  &StartTask_Handle );
 	vTaskStartScheduler();
+#elif PE_USB
+	LCDTask(NULL);
 #else
-	//LCDTask(NULL);
 	host_main();
 #endif
 }
@@ -193,16 +203,16 @@ void LCDTask( void *pvParameters )
 	{
 		//GUI_X_Delay(20);
 		GUI_X_Delay(20);
-		/*printf("Test\n");
-		printf("TotalTimeSeconds = %d\n", TotalTimeSeconds);
+		myprintf("Test\n");
+		myprintf("TotalTimeSeconds = %d\n", TotalTimeSeconds);
 		GUI_X_Delay(10);
-		printf_ok("It is OK\n");
+		myprintf_ok("It is OK\n");
 		GUI_X_Delay(10);
-		printf_error("It is Error\n");
+		myprintf_error("It is Error\n");
 		GUI_X_Delay(10);
-		printf_info("It is Info\n");
+		myprintf_info("It is Info\n");
 		GUI_X_Delay(10);
-		printf_isr("It is ISR\n");*/
+		myprintf_isr("It is ISR\n");
 		if(DMACH1_GetTransferCompleteStatus(pDMA_device))
 		{
 			WM_InvalidateRect(hDlg, pRect);
@@ -251,6 +261,12 @@ void DrvWatchDogDisable(void)
 
 void USBClockInit(void)
 {
+	/* Interrupt vector(s) priority setting */
+	/* NVICIP73: PRI73=0x80 */
+	NVICIP73 = NVIC_IP_PRI73(0x80);
+	/* NVICISER2: SETENA|=0x0200 */
+	NVICISER2 |= NVIC_ISER_SETENA(0x0200);
+
 	/* SIM_SOPT2: USBFSRC=2,USBF_CLKSEL=1 */
 	SIM_SOPT2 = (UINT32)((SIM_SOPT2 & (UINT32)~(UINT32)(
 	       SIM_SOPT2_USBFSRC(0x01)
@@ -260,9 +276,9 @@ void USBClockInit(void)
 	      ));                      /* Clock source=Divided Pll1 clock */
 
 	/* SIM_CLKDIV2: USBFSDIV=4,USBFSFRAC=1 */
-	SIM_CLKDIV2 = (uint32_t)((SIM_CLKDIV2 & (uint32_t)~(uint32_t)(
+	SIM_CLKDIV2 = (UINT32)((SIM_CLKDIV2 & (UINT32)~(UINT32)(
 				   SIM_CLKDIV2_USBFSDIV(0x03)
-				  )) | (uint32_t)(
+				  )) | (UINT32)(
 				   SIM_CLKDIV2_USBFSDIV(0x04) |
 				   SIM_CLKDIV2_USBFSFRAC_MASK
 				  ));					 /* Div=5 - Mult=2	*/
@@ -270,8 +286,20 @@ void USBClockInit(void)
 	/* Enable module clock */
 	/* SIM_SCGC4: USBFS=1 */
 	SIM_SCGC4 |= SIM_SCGC4_USBFS_MASK;	  
-
+	
+	/* Reset module */
+	/* USB0_USBTRC0: USBRESET=1 */
+	USB0_USBTRC0 = USB_USBTRC0_USBRESET_MASK; /* Reset module */
+	while (USB_PDD_GetModuleResetPendingFlag(USB0_BASE_PTR)) {
+	; /* Wait for reset done */
+	}
 	/* Enable USB voltage regulator */
 	/* SIM_SOPT1: ??=1 */
-	SIM_SOPT1 |= 0x80U; 				 /* Enable USB voltage regulator */
+	SIM_SOPT1 |= 0x80U;                  /* Enable USB voltage regulator */
+	/* USB0_USBCTRL: SUSP=1,PDE=0 */
+	USB0_USBCTRL = USB_USBCTRL_SUSP_MASK; /* Enable weak pull-downs and suspend transceiver */
+	/* USB0_OTGCTL: DPHIGH=0,??=0,DPLOW=1,DMLOW=1,??=0,OTGEN=1,??=0,??=0 */
+	USB0_OTGCTL = USB_OTGCTL_DPLOW_MASK |
+				  USB_OTGCTL_DMLOW_MASK |
+				  USB_OTGCTL_OTGEN_MASK;
 }

@@ -97,6 +97,7 @@
       <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\PE_LDD.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\SM1.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\TU1.c</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\USB1.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\Vectors.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Project_Settings\Startup_Code\__arm_end.c</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Project_Settings\Startup_Code\__arm_start.c</PathName>
@@ -193,6 +194,7 @@
       <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\PE_Types.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\SM1.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\TU1.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Generated_Code\USB1.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\app\hidmouse.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\app\poll.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\app\user_config.h</PathName>
@@ -200,6 +202,7 @@
       <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\classes\hub\usb_host_hub.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\classes\hub\usb_host_hub_sm.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\classes\usb_classes.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\classes\usb_host_hub_prv.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\derivative.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\ehci\ehci.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\ehci\ehci_bw.h</PathName>
@@ -212,13 +215,23 @@
       <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\ehci\ehci_shut.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\ehci\ehci_usbprv_host.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\ehci\ehci_utl.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\hidef.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\khci\khci.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\mem_util.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\rtc.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\sci.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\types.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\usb.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\usb_bsp.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\usb_desc.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\usbevent.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\usbmsgq.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\usbprv.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\usbprv_host.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\driver\usbsem.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\host_common\host_ch9.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\host_common\host_close.h</PathName>
+      <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\host_common\host_cnfg.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\host_common\host_cnl.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\host_common\host_common.h</PathName>
       <PathName>E:\Workspace\MK70_Try\PE_Test\Headers\host_common\host_dev_list.h</PathName>

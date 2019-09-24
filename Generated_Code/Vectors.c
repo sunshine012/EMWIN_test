@@ -5,7 +5,7 @@
 **     Processor   : MK70FN1M0VMJ15
 **     Version     : Component 01.028, Driver 01.04, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2019-09-20, 09:32, # CodeGen: 174
+**     Date/Time   : 2019-09-24, 09:27, # CodeGen: 178
 **     Abstract    :
 **
 **     Settings    :
@@ -66,6 +66,7 @@
   #include "DMACH1.h"
   #include "DMA1.h"
   #include "Bit3.h"
+  #include "USB1.h"
   #include "Events.h"
 
 
@@ -76,6 +77,8 @@
   "C"
   #endif
   void __thumb_startup( void );
+  extern void USB_ISR(void);
+  extern void PIT1_ISR(void);
   
   
   /*lint -esym(765,__vect_table) Disable MISRA rule (8.10) checking for symbols (__vect_table). Definition of the interrupt vector table placed by linker on a predefined location. */
@@ -170,11 +173,11 @@
     (tIsrFunc)&Cpu_ivINT_RTC,          /* 0x52  0x00000148   -   ivINT_RTC                      unused by PE */
     (tIsrFunc)&Cpu_ivINT_RTC_Seconds,  /* 0x53  0x0000014C   -   ivINT_RTC_Seconds              unused by PE */
     (tIsrFunc)&TU1_Interrupt,          /* 0x54  0x00000150   15   ivINT_PIT0                     used by PE */
-    (tIsrFunc)&Cpu_ivINT_PIT1,         /* 0x55  0x00000154   -   ivINT_PIT1                     unused by PE */
+    (tIsrFunc)&PIT1_ISR,         /* 0x55  0x00000154   -   ivINT_PIT1                     unused by PE */
     (tIsrFunc)&Cpu_ivINT_PIT2,         /* 0x56  0x00000158   -   ivINT_PIT2                     unused by PE */
     (tIsrFunc)&Cpu_ivINT_PIT3,         /* 0x57  0x0000015C   -   ivINT_PIT3                     unused by PE */
     (tIsrFunc)&Cpu_ivINT_PDB0,         /* 0x58  0x00000160   -   ivINT_PDB0                     unused by PE */
-    (tIsrFunc)&Cpu_ivINT_USB0,         /* 0x59  0x00000164   -   ivINT_USB0                     unused by PE */
+    (tIsrFunc)&USB_ISR,     /* 0x59  0x00000164   8   ivINT_USB0                     used by PE */
     (tIsrFunc)&Cpu_ivINT_USBDCD,       /* 0x5A  0x00000168   -   ivINT_USBDCD                   unused by PE */
     (tIsrFunc)&Cpu_ivINT_ENET_1588_Timer, /* 0x5B  0x0000016C   -   ivINT_ENET_1588_Timer          unused by PE */
     (tIsrFunc)&Cpu_ivINT_ENET_Transmit, /* 0x5C  0x00000170   -   ivINT_ENET_Transmit            unused by PE */

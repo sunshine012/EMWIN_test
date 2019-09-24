@@ -22,6 +22,8 @@
 
 #define KEY_SCAN_PERIOD_MS			16
 
+//#define PE_USB
+
 /***** Macro's *****/
 
 /***** Global variables *****/
@@ -46,6 +48,7 @@ extern uint16  TimeCounter;
 extern uint32  TotalTimeSeconds;
 
 extern LDD_TDeviceData *pDMA_device;
+extern LDD_TDeviceData *pUSB_device;
 
 
 extern volatile GUI_TIMER_TIME OS_TimeMS;

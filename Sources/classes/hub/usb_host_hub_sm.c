@@ -30,7 +30,7 @@
 *END************************************************************************/
 #include "usb_host_hub.h"
 #include "usb_host_hub_prv.h"
-#include "usb_host_hub_sm.h"
+#include "..\..\Headers\classes\hub/usb_host_hub_sm.h"
 #include "mem_util.h"
 
 static HUB_DEVICE_STRUCT_PTR  hubs = NULL;

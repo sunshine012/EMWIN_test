@@ -24,10 +24,10 @@
 *
 *
 *END************************************************************************/
-#include "sci.h"
+#include "..\..\Headers\driver/sci.h"
 #include "psptypes.h"
-#include "usb_bsp.h"
-#include "derivative.h"
+#include "..\..\Headers\driver/usb_bsp.h"
+#include "..\..\Headers/derivative.h"
 
 char   buff[200];
 uint_32 buff_index;

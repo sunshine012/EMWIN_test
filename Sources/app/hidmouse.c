@@ -132,7 +132,7 @@ void host_main(void)
 	static USB_STATUS status = USB_OK;
 
 	// clear terminal
-	printf("\f");
+	myprintf("\f");
 
 	TimerInit();	
 	
@@ -149,8 +149,8 @@ void host_main(void)
 			&host_handle);							/* Returned pointer */
   if(status != USB_OK) 
   {
-      printf("\nUSB Host Initialization failed! STATUS: 0x%x", status);
-      fflush(stdout);
+      myprintf("\nUSB Host Initialization failed! STATUS: 0x%x", status);
+      //fflush(stdout);
       exit(1);
   }
 	/*
@@ -160,8 +160,8 @@ void host_main(void)
 	status = _usb_host_driver_info_register(host_handle, (void *)DriverInfoTable);
   if(status != USB_OK) 
   {         
-      printf("\nUSB Initialization driver info failed! STATUS: 0x%x", status);
-      fflush(stdout);
+      myprintf("\nUSB Initialization driver info failed! STATUS: 0x%x", status);
+      //fflush(stdout);
 	  exit(1);
   }
   
@@ -170,8 +170,8 @@ void host_main(void)
 #if (defined _MCF51MM256_H) || (defined _MCF51JE256_H)
 	usb_int_en();
 #endif   
-  printf("\fUSB HID Mouse\nWaiting for USB Mouse to be attached...\n");
-  fflush(stdout);
+  myprintf("\fUSB HID Mouse\nWaiting for USB Mouse to be attached...\n");
+  //fflush(stdout);
   
   for(;;) 
   {
@@ -180,9 +180,6 @@ void host_main(void)
 		//__RESET_WATCHDOG(); /* feeds the dog */
 	} /* loop forever */
 	/* please make sure that you never leave main */
-#ifdef __GNUC__
-  return 0;
-#endif
 }
 
 /*FUNCTION*----------------------------------------------------------------
@@ -207,14 +204,14 @@ void Mouse_Task ( uchar *buffer, HID_COMMAND_PTR hid_com  )
             	break;
             	
          	case USB_DEVICE_ATTACHED:
-	            printf("\nMouse device attached\n");
-	            fflush(stdout);
+	            myprintf("\nMouse device attached\n");
+	            //fflush(stdout);
 	            hid_device.DEV_STATE = USB_DEVICE_SET_INTERFACE_STARTED;
 	            status = _usb_hostdev_select_interface(hid_device.DEV_HANDLE, hid_device.INTF_HANDLE, (pointer)&hid_device.CLASS_INTF);
 	            if (status != USB_OK) 
 	            {
-               		printf("\nError in _usb_hostdev_select_interface! STATUS: 0x%x", status);
-               		fflush(stdout);
+               		myprintf("\nError in _usb_hostdev_select_interface! STATUS: 0x%x", status);
+               		//fflush(stdout);
                		exit(1);
             	} /* Endif */
             	break;
@@ -223,7 +220,7 @@ void Mouse_Task ( uchar *buffer, HID_COMMAND_PTR hid_com  )
             	break;
             	
          	case USB_DEVICE_INTERFACED:
-         		printf("Mouse interfaced, setting protocol...\n");
+         		myprintf("Mouse interfaced, setting protocol...\n");
          		/* now we will set the USB Hid standard boot protocol */
             	hid_device.DEV_STATE = USB_DEVICE_SETTING_PROTOCOL;
             
@@ -235,8 +232,8 @@ void Mouse_Task ( uchar *buffer, HID_COMMAND_PTR hid_com  )
          
 	         	if(status != USB_STATUS_TRANSFER_QUEUED) 
 	         	{
-	                  printf("\nError in usb_class_hid_set_protocol! STATUS: 0x%x", status);
-	                  fflush(stdout);
+	                  myprintf("\nError in usb_class_hid_set_protocol! STATUS: 0x%x", status);
+	                  //fflush(stdout);
 	         	}
 	            break;
 	            
@@ -247,7 +244,7 @@ void Mouse_Task ( uchar *buffer, HID_COMMAND_PTR hid_com  )
 			      pipe = _usb_hostdev_find_pipe_handle(hid_device.DEV_HANDLE, hid_device.INTF_HANDLE, USB_INTERRUPT_PIPE, USB_RECV);
 			      if(pipe)
 			      {
-         			printf("Mouse device ready, try to move the mouse.\n");
+         			myprintf("Mouse device ready, try to move the mouse.\n");
 			      } 
 			    }
 
@@ -264,8 +261,8 @@ void Mouse_Task ( uchar *buffer, HID_COMMAND_PTR hid_com  )
               	
      			      if (status != USB_STATUS_TRANSFER_QUEUED) 
      			      {
-     			    	  printf("\nError in _usb_host_recv_data! STATUS: 0x%x", status);
-     			    	  fflush(stdout);
+     			    	  myprintf("\nError in _usb_host_recv_data! STATUS: 0x%x", status);
+     			    	  //fflush(stdout);
      			      }
 			    }
             
@@ -296,7 +293,7 @@ void Mouse_Task ( uchar *buffer, HID_COMMAND_PTR hid_com  )
     	     	
          	case USB_DEVICE_DETACHED:
          		check = 0;
-         		printf("Going to idle state\n");
+         		myprintf("Going to idle state\n");
             	hid_device.DEV_STATE = USB_DEVICE_IDLE;
             	break;
             	
@@ -304,8 +301,8 @@ void Mouse_Task ( uchar *buffer, HID_COMMAND_PTR hid_com  )
 	            break;
 	            
     	     default:
-        	    printf("Unknown Mouse Device State = %d\n", hid_device.DEV_STATE);
-            	fflush(stdout);
+        	    myprintf("Unknown Mouse Device State = %d\n", hid_device.DEV_STATE);
+            	//fflush(stdout);
             	break;
       	} /* Endswitch */
    
@@ -338,14 +335,14 @@ void usb_host_hid_mouse_event
    switch (event_code) 
    {
       case USB_ATTACH_EVENT:
-      		printf("----- Attach Event -----\n");
+      		myprintf("----- Attach Event -----\n");
       		/* Drop through into attach, same processing */
       case USB_CONFIG_EVENT:           
-            printf("State = %d", hid_device.DEV_STATE);
-            printf("  Class = %d", intf_ptr->bInterfaceClass);
-            printf("  SubClass = %d", intf_ptr->bInterfaceSubClass);
-            printf("  Protocol = %d\n", intf_ptr->bInterfaceProtocol);
-            fflush(stdout);
+            myprintf("State = %d", hid_device.DEV_STATE);
+            myprintf("  Class = %d", intf_ptr->bInterfaceClass);
+            myprintf("  SubClass = %d", intf_ptr->bInterfaceSubClass);
+            myprintf("  Protocol = %d\n", intf_ptr->bInterfaceProtocol);
+            //fflush(stdout);
 
          if (hid_device.DEV_STATE == USB_DEVICE_IDLE) 
          {
@@ -355,24 +352,24 @@ void usb_host_hid_mouse_event
          } 
          else 
          {
-            printf("HID device already attached - DEV_STATE = %d\n", hid_device.DEV_STATE);
-            fflush(stdout);
+            myprintf("HID device already attached - DEV_STATE = %d\n", hid_device.DEV_STATE);
+            //fflush(stdout);
          } /* Endif */         
          break;
          
       case USB_INTF_EVENT:
-      	 printf("----- Interfaced Event -----\n");
+      	 myprintf("----- Interfaced Event -----\n");
          hid_device.DEV_STATE = USB_DEVICE_INTERFACED;
          break;
          
       case USB_DETACH_EVENT:
 		/* Use only the interface with desired protocol */
-		printf("----- Detach Event -----\n");
-		printf("State = %d", hid_device.DEV_STATE);
-		printf("  Class = %d", intf_ptr->bInterfaceClass);
-		printf("  SubClass = %d", intf_ptr->bInterfaceSubClass);
-		printf("  Protocol = %d\n", intf_ptr->bInterfaceProtocol);
-		fflush(stdout);
+		myprintf("----- Detach Event -----\n");
+		myprintf("State = %d", hid_device.DEV_STATE);
+		myprintf("  Class = %d", intf_ptr->bInterfaceClass);
+		myprintf("  SubClass = %d", intf_ptr->bInterfaceSubClass);
+		myprintf("  Protocol = %d\n", intf_ptr->bInterfaceProtocol);
+		//fflush(stdout);
 
 		hid_device.DEV_HANDLE = NULL;
 		hid_device.INTF_HANDLE = NULL;
@@ -380,8 +377,8 @@ void usb_host_hid_mouse_event
 		break;
 
 	default:
-		printf("HID Device state = %d??\n", hid_device.DEV_STATE);
-		fflush(stdout);
+		myprintf("HID Device state = %d??\n", hid_device.DEV_STATE);
+		//fflush(stdout);
 		hid_device.DEV_STATE = USB_DEVICE_IDLE;
 		break;
 	} /* EndSwitch */
@@ -426,13 +423,13 @@ void usb_host_hid_ctrl_callback
 
    if (status == USBERR_ENDPOINT_STALLED) 
    {
-      printf("\nHID Set_Protocol Request BOOT is not supported!\n");
-      fflush(stdout);
+      myprintf("\nHID Set_Protocol Request BOOT is not supported!\n");
+      //fflush(stdout);
    }
    else if (status) 
    {
-      printf("\nHID Set_Protocol Request BOOT failed!: 0x%x ... END!\n", status);
-      fflush(stdout);
+      myprintf("\nHID Set_Protocol Request BOOT failed!: 0x%x ... END!\n", status);
+      //fflush(stdout);
       exit(1);
    } /* Endif */
 
@@ -493,55 +490,55 @@ void process_mouse_buffer(uchar_ptr buffer)
 {
 
 	if (buffer[0] & 0x01) 
-		printf("Left Click ");
+		myprintf("Left Click ");
 	else 	
-		printf("           ");
+		myprintf("           ");
 	if (buffer[0] & 0x04) 
-		printf("Middle Click ");
+		myprintf("Middle Click ");
 	else 
-		printf("             ");	
+		myprintf("             ");	
 	if (buffer[0] & 0x02) 
-		printf("Right Click ");
+		myprintf("Right Click ");
 	else 
-		printf("            ");
+		myprintf("            ");
 
 	if(buffer[1])
 	{
 		if(buffer[1] > 127) 
-			printf("Left  ");
+			myprintf("Left  ");
 		else 
-			printf("Right ");
+			myprintf("Right ");
 	}
 	else 
 	{ 
-		printf("      ");
+		myprintf("      ");
 	}
 
 	if(buffer[2])
 	{
 		if(buffer[2] > 127) 
-			printf("UP   ");
+			myprintf("UP   ");
 		else 
-			printf("Down ");
+			myprintf("Down ");
 	}
 	else { 
-		printf("     ");
+		myprintf("     ");
 	}
 
 	if(buffer[3])
 	{
 		if(buffer[3] > 127) 
-			printf("Wheel Down");
+			myprintf("Wheel Down");
 		else 
-			printf("Wheel UP  ");
+			myprintf("Wheel UP  ");
 	}
 	else 
 	{ 
-		printf("          ");
+		myprintf("          ");
 	}
 
-	printf("\n");
-	fflush(stdout);	
+	myprintf("\n");
+	//fflush(stdout);	
 
 }
 

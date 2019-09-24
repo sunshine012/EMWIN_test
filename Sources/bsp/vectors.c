@@ -43,7 +43,7 @@ void Cpu_INT_HardFaultInterrupt(void)
 
 void Cpu_Interrupt(void)
 {
-   printf("\n****isr #%d*****\r\n\n", *(volatile uint8_t*)(0xE000ED04));
+   myprintf("\n****isr #%d*****\r\n\n", *(volatile uint8_t*)(0xE000ED04));
 }
  
  /*lint -save  -e926 -e927 -e928 -e929 Disable MISRA rule (11.4) checking. Need to explicitly cast pointers to the general ISR for Interrupt vector table */

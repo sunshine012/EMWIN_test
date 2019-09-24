@@ -173,8 +173,8 @@ void SEGGER_StoreChar    (SEGGER_BUFFER_DESC* pBufferDesc, char c);
 void SEGGER_PrintUnsigned(SEGGER_BUFFER_DESC* pBufferDesc, U32 v, unsigned Base, int Precision);
 void SEGGER_PrintInt     (SEGGER_BUFFER_DESC* pBufferDesc, I32 v, unsigned Base, int Precision);
 //int  SEGGER_snprintf     (char* pBuffer, int BufferSize, const char* sFormat, ...);
-int  SEGGER_vsnprintf    (char* pBuffer, int BufferSize, const char* sFormat, va_list ParamList);
-int  SEGGER_vsnprintfEx  (SEGGER_SNPRINTF_CONTEXT* pContext, const char* sFormat, va_list ParamList);
+int  SEGGER_vsnmyprintf    (char* pBuffer, int BufferSize, const char* sFormat, va_list ParamList);
+int  SEGGER_vsnmyprintfEx  (SEGGER_SNPRINTF_CONTEXT* pContext, const char* sFormat, va_list ParamList);
 
 int  SEGGER_PRINTF_AddFormatter      (SEGGER_PRINTF_FORMATTER* pFormatter, SEGGER_pFormatter pfFormatter, char c);
 void SEGGER_PRINTF_AddDoubleFormatter(void);

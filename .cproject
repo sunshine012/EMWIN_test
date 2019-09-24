@@ -163,7 +163,6 @@
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Headers/classes/hid&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Headers/classes/hub&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Headers/driver&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Headers/driver/ehci&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Headers/driver/khci&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Headers/host_common&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Sources/app&quot;"/>
@@ -242,8 +241,6 @@
 									<listOptionValue builtIn="false" value="Sources/key.c"/>
 									<listOptionValue builtIn="false" value="Sources/main.c"/>
 									<listOptionValue builtIn="false" value="Sources/AppTask.c"/>
-									<listOptionValue builtIn="false" value="Data/DatFont8x16.c"/>
-									<listOptionValue builtIn="false" value="Drivers/DrvFlexBus.c"/>
 									<listOptionValue builtIn="false" value="Drivers/DrvIOPort.c"/>
 									<listOptionValue builtIn="false" value="Drivers/DrvLcdController_MK70.c"/>
 									<listOptionValue builtIn="false" value="Drivers/DrvLcd_Color320x240.c"/>
@@ -253,8 +250,6 @@
 									<listOptionValue builtIn="false" value="Generated_Code/Bit2.c"/>
 									<listOptionValue builtIn="false" value="Generated_Code/LCDC1.c"/>
 									<listOptionValue builtIn="false" value="Generated_Code/SM1.c"/>
-									<listOptionValue builtIn="false" value="Sources/SysDisplay.c"/>
-									<listOptionValue builtIn="false" value="Sources/SysFont.c"/>
 									<listOptionValue builtIn="false" value="Data/Doraemon.c"/>
 									<listOptionValue builtIn="false" value="Data/bird.c"/>
 									<listOptionValue builtIn="false" value="Data/pictures.c"/>
@@ -263,6 +258,41 @@
 									<listOptionValue builtIn="false" value="emwin_548/emwin_config/GUIConf.c"/>
 									<listOptionValue builtIn="false" value="emwin_548/emwin_config/GUI_X.c"/>
 									<listOptionValue builtIn="false" value="emwin_548/emwin_config/LCDConf.c"/>
+									<listOptionValue builtIn="false" value="Generated_Code/Bit3.c"/>
+									<listOptionValue builtIn="false" value="Generated_Code/DMA1.c"/>
+									<listOptionValue builtIn="false" value="Generated_Code/DMACH1.c"/>
+									<listOptionValue builtIn="false" value="Sources/AppDisplay.c"/>
+									<listOptionValue builtIn="false" value="Sources/app/PIT1_kinetis.c"/>
+									<listOptionValue builtIn="false" value="Sources/app/hidmouse.c"/>
+									<listOptionValue builtIn="false" value="Sources/app/poll.c"/>
+									<listOptionValue builtIn="false" value="Sources/app/printf.c"/>
+									<listOptionValue builtIn="false" value="Sources/bsp/P3.c"/>
+									<listOptionValue builtIn="false" value="Sources/classes/hid/usb_host_hid.c"/>
+									<listOptionValue builtIn="false" value="Sources/classes/hub/usb_host_hub.c"/>
+									<listOptionValue builtIn="false" value="Sources/classes/hub/usb_host_hub_sm.c"/>
+									<listOptionValue builtIn="false" value="Sources/classes/usb_classes.c"/>
+									<listOptionValue builtIn="false" value="Sources/driver/ehci/ehci_bw.c"/>
+									<listOptionValue builtIn="false" value="Sources/driver/ehci/ehci_cncl.c"/>
+									<listOptionValue builtIn="false" value="Sources/driver/ehci/ehci_intr.c"/>
+									<listOptionValue builtIn="false" value="Sources/driver/ehci/ehci_iso.c"/>
+									<listOptionValue builtIn="false" value="Sources/driver/ehci/ehci_main.c"/>
+									<listOptionValue builtIn="false" value="Sources/driver/ehci/ehci_shut.c"/>
+									<listOptionValue builtIn="false" value="Sources/driver/ehci/ehci_utl.c"/>
+									<listOptionValue builtIn="false" value="Sources/driver/khci/khci_kinetis.c"/>
+									<listOptionValue builtIn="false" value="Sources/driver/mem_util.c"/>
+									<listOptionValue builtIn="false" value="Sources/driver/usbevent.c"/>
+									<listOptionValue builtIn="false" value="Sources/driver/usbmsgq.c"/>
+									<listOptionValue builtIn="false" value="Sources/driver/usbsem.c"/>
+									<listOptionValue builtIn="false" value="Sources/host_common/host_ch9.c"/>
+									<listOptionValue builtIn="false" value="Sources/host_common/host_close.c"/>
+									<listOptionValue builtIn="false" value="Sources/host_common/host_cnl.c"/>
+									<listOptionValue builtIn="false" value="Sources/host_common/host_common.c"/>
+									<listOptionValue builtIn="false" value="Sources/host_common/host_dev_list.c"/>
+									<listOptionValue builtIn="false" value="Sources/host_common/host_driver.c"/>
+									<listOptionValue builtIn="false" value="Sources/host_common/host_main.c"/>
+									<listOptionValue builtIn="false" value="Sources/host_common/host_rcv.c"/>
+									<listOptionValue builtIn="false" value="Sources/host_common/host_shut.c"/>
+									<listOptionValue builtIn="false" value="Sources/host_common/host_snd.c"/>
 								</option>
 								<option id="org.eclipse.cdt.cross.arm.gnu.c.link.option.libs.2049122196" name="Libraries (-l)" superClass="org.eclipse.cdt.cross.arm.gnu.c.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="emwin_M4F"/>
@@ -277,6 +307,23 @@
 							<tool command="arm-none-eabi-objdump" commandLinePattern="&quot;${ARMSourceryDir}/${COMMAND}&quot; ${INPUTS} ${FLAGS}" errorParsers="com.freescale.core.ide.cdt.errorParsers.GCCErrorParser;org.eclipse.cdt.core.GASErrorParser" id="com.freescale.cdt.cross.arm.gnu.sourcery.windows.elf.disassembler.debug.641440530" name="ARM Ltd Windows GCC Disassembler" superClass="com.freescale.cdt.cross.arm.gnu.sourcery.windows.elf.disassembler.debug"/>
 							<tool command="arm-none-eabi-gcc" commandLinePattern="&quot;${ARMSourceryDir}/${COMMAND}&quot; ${INPUTS} ${FLAGS}" errorParsers="com.freescale.core.ide.cdt.errorParsers.GCCErrorParser" id="com.freescale.cdt.cross.arm.gnu.sourcery.windows.elf.preprocessor.debug.1926767613" name="ARM Ltd Windows GCC C Preprocessor" superClass="com.freescale.cdt.cross.arm.gnu.sourcery.windows.elf.preprocessor.debug">
 								<option id="com.freescale.cdt.cross.arm.gnu.preprocessor.dirs.include.paths.1817637876" name="Include paths (-I)" superClass="com.freescale.cdt.cross.arm.gnu.preprocessor.dirs.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Headers&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Headers/app&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Headers/classes&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Headers/classes/hid&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Headers/classes/hub&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Headers/driver&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Headers/driver/khci&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Headers/host_common&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Sources/app&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Sources/bsp&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Sources/classes&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Sources/classes/hid&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Sources/classes/hub&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Sources/driver/ehci&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Sources/driver/khci&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Sources/driver&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Sources/host_common&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/FreeRTOS/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Data&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Drivers&quot;"/>
@@ -310,7 +357,7 @@
 					</folderInfo>
 					<fileInfo id="org.eclipse.cdt.cross.arm.gnu.sourcery.windows.elf.debug.254887628..settings/com.freescale.processorexpert.core.prefs" name="com.freescale.processorexpert.core.prefs" rcbsApplicability="disable" resourcePath=".settings/com.freescale.processorexpert.core.prefs" toolsToInvoke=""/>
 					<sourceEntries>
-						<entry excluding="Sources/app/sci.c|Sources/bsp/vectors.c|.settings/com.freescale.processorexpert.core.prefs|emwin_524/" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name=""/>
+						<entry excluding="Headers/driver/ehci|Sources/driver/ehci|Sources/app/sci.c|Sources/bsp/vectors.c|.settings/com.freescale.processorexpert.core.prefs|emwin_524/" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -346,4 +393,5 @@
 		</scannerConfigBuildInfo>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
+	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
 </cproject>

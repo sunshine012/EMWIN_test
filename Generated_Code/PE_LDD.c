@@ -5,7 +5,7 @@
 **     Processor   : MK70FN1M0VMJ15
 **     Version     : Component 01.028, Driver 01.04, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2019-09-20, 09:32, # CodeGen: 174
+**     Date/Time   : 2019-09-24, 09:27, # CodeGen: 178
 **     Abstract    :
 **
 **     Settings    :
@@ -68,7 +68,8 @@
 ** Array of initialized device structures of LDD components.
 ** ===========================================================================
 */
-LDD_TDeviceData *PE_LDD_DeviceDataList[11] = {
+LDD_TDeviceData *PE_LDD_DeviceDataList[12] = {
+    NULL,
     NULL,
     NULL,
     NULL,
@@ -169,6 +170,8 @@ bool PE_PeripheralUsed(uint32_t PrphBaseAddress)
     case 0x40008000UL:
     /* Base address allocated by peripheral(s) PTD */
     case 0x400FF0C0UL:
+    /* Base address allocated by peripheral(s) USB0 */
+    case 0x40072000UL:
       result = TRUE;
       break;
     default:
